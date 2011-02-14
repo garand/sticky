@@ -1,3 +1,9 @@
+// Sticky Plugin
+// =============
+// Author: Anthony Garand
+// Date: 2/14/2011
+// Description: Makes an element on the page stick on the screen
+
 (function($){
 	$.fn.sticky = function(options) {
 		var defaults = {
