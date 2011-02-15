@@ -2,6 +2,7 @@
 // =============
 // Author: Anthony Garand
 // Date: 2/14/2011
+// Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen
 
 (function($){
