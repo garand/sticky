@@ -8,7 +8,8 @@
 (function($){
 	$.fn.sticky = function(options) {
 		var defaults = {
-			topSpacing: 0
+			topSpacing: 0,
+			className: 'is-sticky'
 		};  
 		var options = $.extend(defaults, options);
 		return this.each(function() {
@@ -24,10 +25,10 @@
 			$(window).scroll(function(){
 				elementPosition = stickyElement.offset().top - $(window).scrollTop();
 				if (elementPosition <= topPadding) {
-					stickyElement.css("position","fixed").css("top",topPadding);
+					stickyElement.css("position","fixed").css("top",topPadding).addClass(options.className);
 				}
 				if ($(window).scrollTop() <= regPosition - topPadding) {
-					stickyElement.css("position","static").css("top",$(window).scrollTop());
+					stickyElement.css("position","static").css("top",$(window).scrollTop()).removeClass(options.className);
 				}
 			});
 		});
