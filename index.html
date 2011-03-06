@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="jquery.sticky.js"></script>
 	<script>
 		$(document).ready(function(){
-			$("#sticker").sticky({topSpacing:10});
+			$("#sticker").sticky({topSpacing:10,className:'sticky'});
 		});
 	</script>
 	<style>
@@ -29,6 +29,10 @@
 			margin: 0;
 			text-shadow: 0 1px 1px rgba(0,0,0,.2);
 			border-radius: 50px;
+		}
+		
+		#sticker.sticky {
+		  background: orange;
 		}
 	</style>
 </head>
