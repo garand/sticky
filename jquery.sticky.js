@@ -11,24 +11,31 @@
 			topSpacing: 0,
 			className: 'is-sticky'
 		};  
-		var options = $.extend(defaults, options);
+		var o = $.extend(defaults, options);
 		return this.each(function() {
-			var topPadding = options.topSpacing,
+			var topSpacing = o.topSpacing,
 			stickyElement = $(this),
 			stickyElementHeight = stickyElement.outerHeight(),
 			stickyElementWidth = stickyElement.outerWidth(),
-			elementPosition = stickyElement.offset().top - $(window).scrollTop(),
 			regPosition = stickyElement.offset().top,
-			stickyId = stickyElement.attr("id");
+			stickyId = stickyElement.attr('id'),
+			fixed = false;
 			stickyElement.wrapAll('<div id="' + stickyId + 'StickyWrapper"></div>');
-			stickyElement.parent().css("height",stickyElementHeight).css("width",stickyElementWidth);
-			$(window).scroll(function(){
-				elementPosition = stickyElement.offset().top - $(window).scrollTop();
-				if (elementPosition <= topPadding) {
-					stickyElement.css("position","fixed").css("top",topPadding).addClass(options.className);
+			stickyElement.css('height', stickyElementHeight).css('width', stickyElementWidth);
+			$(window).scroll(function() {
+				var scrollTop = $(window).scrollTop();
+				if (scrollTop <= regPosition - topSpacing) {
+					if (fixed) {
+						stickyElement.css('position', '').css('top', '').removeClass(o.className);
+						fixed = false;
+					}
 				}
-				if ($(window).scrollTop() <= regPosition - topPadding) {
-					stickyElement.css("position","static").css("top",$(window).scrollTop()).removeClass(options.className);
+				else if (!fixed) {
+					var elementPosition = stickyElement.offset().top - scrollTop;
+					if (elementPosition <= topSpacing) {
+						stickyElement.css('position', 'fixed').css('top', topSpacing).addClass(o.className);
+						fixed = true;
+					}
 				}
 			});
 		});
