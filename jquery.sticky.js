@@ -15,13 +15,16 @@
 		return this.each(function() {
 			var topSpacing = o.topSpacing,
 			stickyElement = $(this),
-			stickyElementHeight = stickyElement.outerHeight(),
-			stickyElementWidth = stickyElement.outerWidth(),
 			regPosition = stickyElement.offset().top,
 			stickyId = stickyElement.attr('id'),
 			fixed = false;
 			stickyElement.wrapAll('<div id="' + stickyId + 'StickyWrapper"></div>');
-			stickyElement.css('height', stickyElementHeight).css('width', stickyElementWidth);
+			stickyElement
+				.css('width', stickyElement.width())
+				.parent()
+					.css('width', stickyElement.outerWidth())
+					.css('height', stickyElement.outerHeight())
+					.css('clear', stickyElement.css('clear'));
 			$(window).scroll(function() {
 				var scrollTop = $(window).scrollTop();
 				if (scrollTop <= regPosition - topSpacing) {
