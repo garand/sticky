@@ -6,58 +6,80 @@
 // Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen
 
-(function($){
-	$.fn.sticky = function(options) {
-		var defaults = {
+(function($) {
+	var defaults = {
 			topSpacing: 0,
 			bottomSpacing: 0,
 			className: 'is-sticky'
+		},
+		$window = $(window),
+		$document = $(document),
+		sticked = [],
+		windowHeight = $window.height(),
+		scroller = function() {
+			var scrollTop = $window.scrollTop(),
+				documentHeight = $document.height(),
+				dwh = documentHeight - windowHeight,
+				extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+			for (var i = 0; i < sticked.length; i++) {
+				var s = sticked[i],
+					elementTop = s.stickyWrapper.offset().top,
+					etse = elementTop - s.topSpacing - extra;
+				if (scrollTop <= etse) {
+					if (s.currentTop !== null) {
+						s.stickyElement.css('position', '').css('top', '').removeClass(s.className);
+						s.currentTop = null;
+					}
+				}
+				else {
+					var newTop = documentHeight - s.elementHeight - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+					if (newTop < 0) {
+						newTop = newTop + s.topSpacing;
+					} else {
+						newTop = s.topSpacing;
+					}
+					if (s.currentTop != newTop) {
+						s.stickyElement.css('position', 'fixed').css('top', newTop).addClass(s.className);
+						s.currentTop = newTop;
+					}
+				}
+			}
+		},
+		resizer = function() {
+			windowHeight = $window.height();
 		};
+
+	// should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
+	if (window.addEventListener) {
+		window.addEventListener('scroll', scroller, false);
+		window.addEventListener('resize', resizer, false);
+	} else if (window.attachEvent) {
+		window.attachEvent('onscroll', scroller);
+		window.attachEvent('onresize', resizer);
+	}
+
+	$.fn.sticky = function(options) {
 		var o = $.extend(defaults, options);
 		return this.each(function() {
-			var topSpacing = o.topSpacing,
-				bottomSpacing = o.bottomSpacing,
-				stickyElement = $(this),
-				stickyId = stickyElement.attr('id'),
-				currentTop = null;
+			var stickyElement = $(this),
+			stickyId = stickyElement.attr('id');
 			stickyElement
 				.wrapAll('<div id="' + stickyId + 'StickyWrapper"></div>')
 				.css('width', stickyElement.width());
-			var stickyWrapper = stickyElement.parent(),
-				elementHeight = stickyElement.outerHeight();
+			var elementHeight = stickyElement.outerHeight(),
+				stickyWrapper = stickyElement.parent();
 			stickyWrapper
 				.css('width', stickyElement.outerWidth())
 				.css('height', elementHeight)
 				.css('clear', stickyElement.css('clear'));
-			var windowHeight = $(window).height();
-			$(window).resize(function() {
-				windowHeight = $(window).height();
-			});
-			$(window).scroll(function() {
-				var scrollTop = $(window).scrollTop(),
-					documentHeight = $(document).height(),
-					elementTop = stickyWrapper.offset().top,
-					dwh = documentHeight - windowHeight;
-				var extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
-				var etse = elementTop - topSpacing - extra;
-				if (scrollTop <= etse) {
-					if (currentTop !== null) {
-						stickyElement.css('position', '').css('top', '').removeClass(o.className);
-						currentTop = null;
-					}
-				}
-				else {
-					var newTop = documentHeight - elementHeight - topSpacing - bottomSpacing - scrollTop - extra;
-					if (newTop < 0) {
-						newTop = newTop + topSpacing;
-					} else {
-						newTop = topSpacing;
-					}
-					if (currentTop != newTop) {
-						stickyElement.css('position', 'fixed').css('top', newTop).addClass(o.className);
-						currentTop = newTop;
-					}
-				}
+			sticked.push({
+				topSpacing: o.topSpacing,
+				bottomSpacing: o.bottomSpacing,
+				stickyElement: stickyElement,
+				currentTop: null,
+				stickyWrapper: stickyWrapper,
+				elementHeight: elementHeight,
+				className: o.className
 			});
 		});
 	};
