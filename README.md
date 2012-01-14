@@ -9,7 +9,7 @@ Two simple steps:
 - Include jQuery & Sticky.
 - Call Sticky.
 
-`
+```javascript
 <script src="jquery.js"></script>
 <script src="jquery.sticky.js"></script>
 <script>
@@ -17,5 +17,5 @@ Two simple steps:
     $("#sticker").sticky({topSpacing:0});
   });
 </script>
-`
+```
 
