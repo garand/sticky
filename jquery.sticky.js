@@ -11,7 +11,8 @@
     var defaults = {
             topSpacing: 0,
             bottomSpacing: 0,
-            className: 'is-sticky'
+            className: 'is-sticky',
+            center: false
         },
         $window = $(window),
         $document = $(document),
@@ -62,10 +63,13 @@
     $.fn.sticky = function(options) {
         var o = $.extend(defaults, options);
         return this.each(function() {
-            var stickyElement = $(this),
+            var stickyElement = $(this);
+            if (o.center)
+                var centerElement = "margin-left:auto;margin-right:auto;";
+
             stickyId = stickyElement.attr('id');
             stickyElement
-                .wrapAll('<div id="' + stickyId + 'StickyWrapper"></div>')
+                .wrapAll('<div id="' + stickyId + 'StickyWrapper" style="' + centerElement + '"></div>')
                 .css('width', stickyElement.width());
             var elementHeight = stickyElement.outerHeight(),
                 stickyWrapper = stickyElement.parent();

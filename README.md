@@ -19,3 +19,11 @@ Two simple steps:
 </script>
 ```
 
+## Options
+
+|   Options   |
+|:-----------:|
+|topSpacing   |
+|bottomSpacing|
+|className    |
+|center       |
