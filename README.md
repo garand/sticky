@@ -21,8 +21,6 @@ Two simple steps:
 
 ## Options
 
-|   Options   |
-|:-----------:|
 |topSpacing   |
 |bottomSpacing|
 |className    |
