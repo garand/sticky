@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <title>Sticky Plugin</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.sticky.js"></script>
+  <script>
+    $(window).load(function(){
+      $("#sticker").sticky({ topSpacing: 50, className: 'sticky', wrapperClassName: 'my-wrapper' });
+    });
+  </script>
+  <style>
+    body {
+      height: 10000px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .my-wrapper {
+      border: 1px solid #ccc;
+      float: right;
+    }
+
+    #sticker {
+      background: #bada55;
+      color: white;
+      width: 300px;
+      font-family: Droid Sans;
+      font-size: 40px;
+      line-height: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto;
+      text-shadow: 0 1px 1px rgba(0,0,0,.2);
+      border-radius: 50px;
+    }
+
+    .sticky #sticker {
+      background: orange;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <p>This is test this is text this is text at the top.</p>
+  <div id="sticker">
+    <p>This is the sticky thingy that is really cool.</p>
+  </div>
+  <p>This is test this is text this is text at the bottom.</p>
+</body>
+</html>
