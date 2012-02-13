@@ -2,9 +2,6 @@
 
 Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.
 
-The version in this fork is a bit different than the [original](https://github.com/garand/Sticky):
-
-
 ## Sticky in brief
 
 This is how it works:
