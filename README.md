@@ -2,9 +2,17 @@
 
 Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.
 
-## Usage
+The version in this fork is a bit different than the [original](https://github.com/garand/Sticky):
 
-Two simple steps:
+
+## Sticky in brief
+
+This is how it works:
+
+- When the target element is about to be hidden, the plugin will add the class `className` to it (and to a wrapper added as its parent), set it to `position: fixed` and calculate its new `top`, based on the element's height, the page height and the `topSpacing` and `bottomSpacing` options.
+- That's it. In some cases you might need to set a fixed width to your element when it is "sticked". Check the `example-*.html` files for some examples.
+
+## Usage
 
 - Include jQuery & Sticky.
 - Call Sticky.
@@ -19,10 +27,17 @@ Two simple steps:
 </script>
 ```
 
+- Edit your css to position the elements (check the examples in `example-*.html`).
+
 ## Options
 
-|topSpacing   |
-|:-----------:|
-|bottomSpacing|
-|className    |
-|center       |
+- `topSpacing`: Pixels between the page top and the element's top.
+- `bottomSpacing`: Pixels between the page bottom and the element's bottom.
+- `className`: CSS class added to the element and its wrapper when "sticked".
+- `wrapperClassName`: CSS class added to the wrapper.
+
+## Methods
+
+- `sticky(options)`: Initializer. `options` is optional.
+- `sticky('update')`: Recalculates the element's position.
+ 
