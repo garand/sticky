@@ -106,5 +106,7 @@
             $.error('Method ' + method + ' does not exist on jQuery.sticky');
         }
     };
-
+    $(function() {
+        setTimeout(scroller, 0);
+    });
 })(jQuery);
