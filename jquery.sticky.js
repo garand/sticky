@@ -35,8 +35,10 @@
 					var newTop = documentHeight - s.elementHeight - s.topSpacing - s.bottomSpacing - scrollTop - extra;
 					if (newTop < 0) {
 						newTop = newTop + s.topSpacing;
-					} else {
+					} else if (s.topSpacing < elementTop) {
 						newTop = s.topSpacing;
+					} else {
+						newTop = elementTop;
 					}
 					if (s.currentTop != newTop) {
 						s.stickyElement.css('position', 'fixed').css('top', newTop).addClass(s.className);
