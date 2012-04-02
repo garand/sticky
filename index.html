@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Sticky by garand</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Sticky</h1>
+        <p>jQuery Plugin for Sticky Objects</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/garand/Sticky" class="button fork"><strong>Fork On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/garand/Sticky/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/garand/Sticky/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>Sticky</h1>
+
+<p>Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.</p>
+
+<h2>Sticky in brief</h2>
+
+<p>This is how it works:</p>
+
+<ul>
+<li>When the target element is about to be hidden, the plugin will add the class <code>className</code> to it (and to a wrapper added as its parent), set it to <code>position: fixed</code> and calculate its new <code>top</code>, based on the element's height, the page height and the <code>topSpacing</code> and <code>bottomSpacing</code> options.</li>
+<li>That's it. In some cases you might need to set a fixed width to your element when it is "sticked". Check the <code>example-*.html</code> files for some examples.</li>
+</ul><h2>Usage</h2>
+
+<ul>
+<li>Include jQuery &amp; Sticky.</li>
+<li>Call Sticky.</li>
+</ul><div class="highlight">
+<pre><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"jquery.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"jquery.sticky.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">"#sticker"</span><span class="p">).</span><span class="nx">sticky</span><span class="p">({</span><span class="nx">topSpacing</span><span class="o">:</span><span class="mi">0</span><span class="p">});</span>
+  <span class="p">});</span>
+<span class="o">&lt;</span><span class="err">/script&gt;</span>
+</pre>
+</div>
+
+
+<ul>
+<li>Edit your css to position the elements (check the examples in <code>example-*.html</code>).</li>
+</ul><h2>Options</h2>
+
+<ul>
+<li>
+<code>topSpacing</code>: Pixels between the page top and the element's top.</li>
+<li>
+<code>bottomSpacing</code>: Pixels between the page bottom and the element's bottom.</li>
+<li>
+<code>className</code>: CSS class added to the element and its wrapper when "sticked".</li>
+<li>
+<code>wrapperClassName</code>: CSS class added to the wrapper.</li>
+</ul><h2>Methods</h2>
+
+<ul>
+<li>
+<code>sticky(options)</code>: Initializer. <code>options</code> is optional.</li>
+<li>
+<code>sticky('update')</code>: Recalculates the element's position.</li>
+</ul>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/garand">garand</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+  </body>
+</html>
