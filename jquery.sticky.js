@@ -15,7 +15,7 @@
             topSpacing: 0,
             bottomSpacing: 0,
             className: 'is-sticky',
-            wrapperClassName: 'sticky-wrapper',
+            wrapperClassName: 'sticky-wrapper'
         },
         $window = $(window),
         $document = $(document),
