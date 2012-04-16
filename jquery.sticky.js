@@ -72,7 +72,7 @@
                     wrapper = $('<div></div>')
                         .attr('id', stickyId + '-sticky-wrapper')
                         .addClass(o.wrapperClassName);
-                    stickyElement.wrapAll(wrapper)
+                    stickyElement.wrapAll(wrapper);
                     var stickyWrapper = stickyElement.parent();
                     stickyWrapper.css('height', stickyElement.outerHeight());
                     sticked.push({
