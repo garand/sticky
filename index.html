@@ -1,100 +1,226 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Sticky by garand</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/main.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+	<title>Sticky Plugin</title>
+	<script src="http://use.typekit.com/ypv4axq.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+	<script src="https://raw.github.com/garand/Sticky/master/jquery.sticky.js"></script>
+	<script> 
+		$(document).ready(function(){
+			$("#header").sticky({topSpacing:0});
+			$("#buttons").sticky({topSpacing:70});
+			$("#authorinfo").sticky({topSpacing:160});
+		});
+	</script>
+	<style>
+		body {
+			background: #060606 url("bg.jpg") center top repeat-x;
+			margin: 0;
+			height: 5000px;
+			font-family: "proxima-nova-1","proxima-nova-2";
+			letter-spacing: -.02em;
+			text-shadow: 0 2px 5px rgba(0,0,0,.9);
+		}
+		#header {
+			width: 976px;
+			height: 203px;
+			margin: 0 auto;
+			background: url("header.png") center top no-repeat;
+			text-align: center;
+			color: black;
+			text-transform: uppercase;
+			font-family: "league-gothic-1","league-gothic-2", sans-serif;
+			font-size: 36px;
+			margin-bottom: -100px;
+			text-shadow: none;
+		}
+		#header-sticky-wrapper {
+			width: 976px;
+			margin: 0 auto;
+		}
+		#header span {
+			display: block;
+			padding-top: 5px;
+		}
+		#header span em {
+			color: #ccc;
+			font-style: normal;
+		}
+		a {
+			color:#e5a300;
+			text-decoration: underline;
+		}
+		a:hover {
+			text-decoration: none;
+		}
+		p#title {
+			color: white;
+			text-align: center;
+			font-size: 26px;
+			text-shadow: 0 2px 5px rgba(0,0,0,.9);
+			margin-top: -120px;
+			margin-bottom: 25px;
+			line-height: 1.6em;
+			font-weight: 300;
+			width: 700px;
+		}
+		#contentWrapper{
+			width: 700px;
+			margin: 0 auto;
+		}
+		#buttons{
+			width: 500px;
+			height: 80px;
+			margin: 0 auto;
+		}
+		#buttons-sticky-wrapper {
+			width: 500px;
+			margin: 0 auto;
+		}
+		a.button.orange {
+			display: block;
+			float: left;
+			width: 250px;
+			height: 80px;
+			background: url("buttons.png") 0 0 no-repeat;
+		}
+		a.button.orange:hover {
+			background: url("buttons.png") 0 -80px no-repeat;
+		}
+		a.button.orange:active {
+			background: url("buttons.png") 0 -160px no-repeat;
+		}
+		a.button.green {
+			display: block;
+			float: right;
+			width: 250px;
+			height: 80px;
+			background: url("buttons.png") -250px 0 no-repeat;
+		}
+		a.button.green:hover {
+			background: url("buttons.png") -250px -80px no-repeat;
+		}
+		a.button.green:active {
+			background: url("buttons.png") -250px -160px no-repeat;
+		}
+		p{
+			color: white;
+			text-align: center;
+			font-size: 18px;
+			text-shadow: 0 2px 5px rgba(0,0,0,.9);
+			margin: 25px auto;
+			line-height: 1.6em;
+			font-weight: 300;
+			text-align: center;
+		}
+		p.scrollDown{
+			width: 350px;
+			line-height: 39px;
+		}
+		p img {
+			margin: 0 10px 0 10px;
+			float: left;
+			display: block;
+		}
+		p img:last-child {
+			float: right;
+		}
+		#leftCol {
+			width: 300px;
+			float: left;
+			color: white;
+			font-size: 20px;
+			margin-top: 20px;
+			text-shadow: 0 2px 5px rgba(0,0,0,.9);
+		}
+		#leftCol li {
+			margin: 20px 0;
+		}
+		#rightCol {
+			float: right;
+			width: 400px;
+			background-color: rgba(0,0,0,.5);
+			border-radius: 15px;
+			border-top: solid 1px rgba(0,0,0,.9);
+			border-bottom: solid 1px rgba(255,255,255,.1);
+			-mox-box-shadow: 0 2px 2px rgba(255,255,255,.1);
+			-webkit-box-shadow: 0 2px 2px rgba(255,255,255,.1);
+			box-shadow: 0 2px 2px rgba(255,255,255,.1);
+		}
+		#rightCol #codeBox {
+			margin: 5px;
+			background: #0d152b;
+			border-radius: 10px;
+			color: white;
+			padding: 10px 20px;
+			line-height: 30px;
+			font-size: 14px;
+			font-family: "droid-sans-mono-1","droid-sans-mono-2", "courier new";
+		}
+		.clear {clear:both;}
+		p#authorinfo {
+			width: 700px;
+			margin: 0 auto;
+			font-size: 12px;
+		}
+	</style>
+	<script type="text/javascript">
 
-  </head>
-  <body>
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-2008108-6']);
+	  _gaq.push(['_trackPageview']);
 
-      <header>
-        <h1>Sticky</h1>
-        <p>jQuery Plugin for Sticky Objects</p>
-      </header>
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
 
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="https://github.com/garand/Sticky" class="button fork"><strong>Fork On GitHub</strong></a>
-        <div class="downloads">
-          <span>Downloads:</span>
-          <ul>
-            <li><a href="https://github.com/garand/Sticky/zipball/master" class="button">ZIP</a></li>
-            <li><a href="https://github.com/garand/Sticky/tarball/master" class="button">TAR</a></li>
-          </ul>
-        </div>
-
-      </div><!-- end banner -->
-
-    <div class="wrapper">
-      <nav>
-        <ul></ul>
-      </nav>
-      <section>
-        <h1>Sticky</h1>
-
-<p>Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.</p>
-
-<h2>Sticky in brief</h2>
-
-<p>This is how it works:</p>
-
-<ul>
-<li>When the target element is about to be hidden, the plugin will add the class <code>className</code> to it (and to a wrapper added as its parent), set it to <code>position: fixed</code> and calculate its new <code>top</code>, based on the element's height, the page height and the <code>topSpacing</code> and <code>bottomSpacing</code> options.</li>
-<li>That's it. In some cases you might need to set a fixed width to your element when it is "sticked". Check the <code>example-*.html</code> files for some examples.</li>
-</ul><h2>Usage</h2>
-
-<ul>
-<li>Include jQuery &amp; Sticky.</li>
-<li>Call Sticky.</li>
-</ul><div class="highlight">
-<pre><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"jquery.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"jquery.sticky.js"</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#sticker"</span><span class="p">).</span><span class="nx">sticky</span><span class="p">({</span><span class="nx">topSpacing</span><span class="o">:</span><span class="mi">0</span><span class="p">});</span>
-  <span class="p">});</span>
-<span class="o">&lt;</span><span class="err">/script&gt;</span>
-</pre>
-</div>
-
-
-<ul>
-<li>Edit your css to position the elements (check the examples in <code>example-*.html</code>).</li>
-</ul><h2>Options</h2>
-
-<ul>
-<li>
-<code>topSpacing</code>: Pixels between the page top and the element's top.</li>
-<li>
-<code>bottomSpacing</code>: Pixels between the page bottom and the element's bottom.</li>
-<li>
-<code>className</code>: CSS class added to the element and its wrapper when "sticked".</li>
-<li>
-<code>wrapperClassName</code>: CSS class added to the wrapper.</li>
-</ul><h2>Methods</h2>
-
-<ul>
-<li>
-<code>sticky(options)</code>: Initializer. <code>options</code> is optional.</li>
-<li>
-<code>sticky('update')</code>: Recalculates the element's position.</li>
-</ul>
-      </section>
-      <footer>
-        <p>Project maintained by <a href="https://github.com/garand">garand</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/#!/michigangraham">mattgraham</a></small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-  </body>
+	</script>
+</head>
+<body>
+	<div id="header">
+		<span>Sticky<em>Beta</em></span>
+	</div>
+	<div id="contentWrapper">
+		<p id="title">Sticky is a jQuery plugin that gives you the ability to<br/> make any element on your page always stay visible.
+		<div id="buttons">
+			<!-- <a href="http://grnd.cc/4b4A" class="button orange"></a> -->
+			<!-- <a href="http://grnd.cc/4amJ" class="button green"></a> -->
+			<a href="https://github.com/garand/sticky/zipball/master" class="button orange"></a>
+			<a href="https://github.com/garand/sticky" class="button green"></a>
+		</div>
+		<p class="scrollDown"><img src="downarrow.png"/>Scroll down to see it in action.<img src="downarrow.png"/></p>
+		<div id="leftCol">
+			<ol>
+				<li>Include jQuery &amp; Sticky.</li>
+				<li>Call Sticky.</li>
+				<!-- <li>Enjoy! (and <a href="http://grnd.cc/4bxg">tweet it</a>)</li> -->
+				<li>Enjoy!</li>
+			</ol>
+		</div>
+		<div id="rightCol">
+			<div id="codeBox">
+				&lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;<br/>
+				&lt;script src=&quot;jquery.sticky.js&quot;&gt;&lt;/script&gt;<br/>
+				&lt;script&gt;<br/>
+				&nbsp;&nbsp;$(document).ready(function(){<br/>
+				&nbsp;&nbsp;&nbsp;&nbsp;$(&quot;#sticker&quot;).sticky({topSpacing:0});<br/>
+				&nbsp;&nbsp;});<br/>
+				&lt;/script&gt;
+			</div>
+		</div>
+		<div class="clear"></div>
+		<p>Find something wrong? Got a suggestion? <a href="mailto:anthonygarand@gmail.com">Drop me a line.</a></p>
+		<p id="authorinfo">
+			Made with love by <a href="http://anthonygarand.com">Anthony Garand</a>
+		</p>
+	</div>
+	<script type="text/javascript"
+	  src="http://gaug.es/track.js"
+	  id="gauges-tracker"
+	  data-site-id="4d5aa2247b3a3e3311000002">
+	</script>
+</body>
 </html>
