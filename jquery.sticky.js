@@ -14,7 +14,7 @@
     var defaults = {
             topSpacing: 0,
             bottomSpacing: 0,
-            className: 'is-sticky',
+            elementClassName: 'is-sticky',
             wrapperClassName: 'sticky-wrapper'
         },
         $window = $(window),
@@ -35,8 +35,8 @@
                         s.stickyElement
                             .css('position', '')
                             .css('top', '')
-                            .removeClass(s.className);
-                        s.stickyElement.parent().removeClass(s.className);
+                            .removeClass(s.elementClassName);
+                        s.stickyElement.parent().removeClass(s.elementClassName);
                         s.currentTop = null;
                     }
                 }
@@ -52,8 +52,8 @@
                         s.stickyElement
                             .css('position', 'fixed')
                             .css('top', newTop)
-                            .addClass(s.className);
-                        s.stickyElement.parent().addClass(s.className);
+                            .addClass(s.elementClassName);
+                        s.stickyElement.parent().addClass(s.elementClassName);
                         s.currentTop = newTop;
                     }
                 }
@@ -81,7 +81,7 @@
                         stickyElement: stickyElement,
                         currentTop: null,
                         stickyWrapper: stickyWrapper,
-                        className: o.className
+                        elementClassName: o.elementClassName
                     });
                 });
             },
@@ -91,8 +91,8 @@
                     var stickyElement = $(this);
                     var stickyWrapper = stickyElement.parent();
 
-                    stickyElement.css('position', '').css('top', '');
-                    stickyWrapper.removeClass('sticky-wrapper is-sticky');
+                    stickyElement.css('position', '').css('top', '').removeClass(o.elementClassName);
+                    stickyWrapper.removeClass(o.wrapperClassName +' '+ o.elementClassName);
 
                     if (window.removeEventListener) {
                         window.removeEventListener('scroll', scroller, false);
