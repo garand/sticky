@@ -86,17 +86,13 @@
                 });
             },
             destroy: function() {
-                $('is-sticky').css('position', '').css('top', '');
-                $('.is-sticky').unbind("sticky");
+                $('.is-sticky').css('position', '').css('top', '');
                 $('.sticky-wrapper, .is-sticky').removeClass('sticky-wrapper is-sticky');
                 
-                $(window).unbind("sticky");
-                $(document).unbind("scroll");
-                $(document).unbind("resize");
-                
                 if (window.removeEventListener) {
-                    window.removeEventListener('scroll');
-                    window.removeEventListener('resize');
+                    window.removeEventListener('scroll', scroller, false);
+                    window.removeEventListener('resize', resizer, false);
+                
                 } else if (window.detachEvent) {
                     window.detachEvent('onscroll');
                     window.detachEvent('onresize');
