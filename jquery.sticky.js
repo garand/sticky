@@ -85,18 +85,23 @@
                     });
                 });
             },
-            destroy: function() {
-                $('.is-sticky').css('position', '').css('top', '');
-                $('.sticky-wrapper, .is-sticky').removeClass('sticky-wrapper is-sticky');
-                
-                if (window.removeEventListener) {
-                    window.removeEventListener('scroll', scroller, false);
-                    window.removeEventListener('resize', resizer, false);
-                
-                } else if (window.detachEvent) {
-                    window.detachEvent('onscroll');
-                    window.detachEvent('onresize');
-                }
+            destroy: function(options) {
+                var o = $.extend(defaults, options);
+                return this.each(function() {
+                    var stickyElement = $(this);
+                    var stickyWrapper = stickyElement.parent();
+
+                    stickyElement.css('position', '').css('top', '');
+                    stickyWrapper.removeClass('sticky-wrapper is-sticky');
+
+                    if (window.removeEventListener) {
+                        window.removeEventListener('scroll', scroller, false);
+                        window.removeEventListener('resize', resizer, false);
+                    } else if (window.detachEvent) {
+                        window.detachEvent('onscroll');
+                        window.detachEvent('onresize');
+                    }
+                });
             },
             update: scroller
         };
