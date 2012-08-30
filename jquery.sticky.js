@@ -19,7 +19,7 @@
         },
         $window = $(window),
         $document = $(document),
-        sticked = [],
+        sticked = ( typeof sticked != 'undefined' && sticked instanceof Array ) ? sticked : [];
         windowHeight = $window.height(),
         scroller = function() {
             var scrollTop = $window.scrollTop(),
@@ -75,6 +75,8 @@
                     stickyElement.wrapAll(wrapper);
                     var stickyWrapper = stickyElement.parent();
                     stickyWrapper.css('height', stickyElement.outerHeight());
+                    stickyElement.attr('data-position', stickyElement.css('position'));
+                    stickyElement.attr('data-top', stickyElement.css('top'));
                     sticked.push({
                         topSpacing: o.topSpacing,
                         bottomSpacing: o.bottomSpacing,
@@ -91,11 +93,13 @@
                     var stickyElement = $(this);
                     var stickyWrapper = stickyElement.parent();
 
-                    stickyElement.css('position', '').css('top', '').removeClass(o.elementClassName);
-                    stickyWrapper.removeClass(o.wrapperClassName +' '+ o.elementClassName);
-
-                    var wrapperContents = stickyWrapper.contents();
-                    stickyWrapper.replaceWith(wrapperContents);
+                    stickyElement
+                        .css('position', stickyElement.attr('data-position'))
+                        .css('top', stickyElement.attr('data-top'))
+                        .removeAttr('data-position')
+                        .removeAttr('data-top')
+                        .removeClass(o.elementClassName)
+                        .unwrap();
 
                     for (var i = 0; i < sticked.length; i++) {
                         var s = sticked[i];
@@ -106,14 +110,6 @@
                         sticked.splice(elementsToRemove[i], 1);
                     }
                     elementsToRemove = null;
-
-                    if (window.removeEventListener) {
-                        window.removeEventListener('scroll', scroller, false);
-                        window.removeEventListener('resize', resizer, false);
-                    } else if (window.detachEvent) {
-                        window.detachEvent('onscroll');
-                        window.detachEvent('onresize');
-                    }
                 });
             },
             update: scroller
