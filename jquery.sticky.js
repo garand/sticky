@@ -21,7 +21,7 @@
         $document = $(document),
         sticked = ( typeof sticked != 'undefined' && sticked instanceof Array ) ? sticked : [];
         windowHeight = $window.height(),
-        scroller = function() {
+        scroller = function(forceRefresh) {
             var scrollTop = $window.scrollTop(),
                 documentHeight = $document.height(),
                 dwh = documentHeight - windowHeight,
@@ -48,7 +48,7 @@
                     } else {
                         newTop = s.topSpacing;
                     }
-                    if (s.currentTop != newTop) {
+                    if ( (s.currentTop != newTop) || (forceRefresh == true) ) {
                         s.stickyElement
                             .css('position', 'fixed')
                             .css('top', newTop)
@@ -85,6 +85,7 @@
                         stickyWrapper: stickyWrapper,
                         elementClassName: o.elementClassName
                     });
+                    scroller(true);
                 });
             },
             destroy: function(options) {
