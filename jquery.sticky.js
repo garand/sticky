@@ -97,6 +97,16 @@
                     var wrapperContents = stickyWrapper.contents();
                     stickyWrapper.replaceWith(wrapperContents);
 
+                    for (var i = 0; i < sticked.length; i++) {
+                        var s = sticked[i];
+                        var elementsToRemove = [];
+                        if (s.stickyElement.attr('id') === stickyElement.attr('id')) elementsToRemove.push(i);
+                    }
+                    for (var i = 0; i < elementsToRemove.length; i++) {
+                        sticked.splice(elementsToRemove[i], 1);
+                    }
+                    elementsToRemove = null;
+
                     if (window.removeEventListener) {
                         window.removeEventListener('scroll', scroller, false);
                         window.removeEventListener('resize', resizer, false);
