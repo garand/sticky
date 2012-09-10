@@ -102,9 +102,10 @@
                         .removeClass(o.elementClassName)
                         .unwrap();
 
+                    var elementsToRemove = [];
+                    
                     for (var i = 0; i < sticked.length; i++) {
                         var s = sticked[i];
-                        var elementsToRemove = [];
                         if (s.stickyElement.attr('id') === stickyElement.attr('id')) elementsToRemove.push(i);
                     }
                     for (var i = 0; i < elementsToRemove.length; i++) {
