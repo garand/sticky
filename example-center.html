@@ -6,7 +6,21 @@
   <script type="text/javascript" src="jquery.sticky.js"></script>
   <script>
     $(window).load(function(){
-      $("#sticker").sticky({ topSpacing: 50, className: 'sticky', wrapperClassName: 'my-wrapper' });
+      var customClassName = 'is-sticky';
+      var customWrapperClassName = 'sticky-wrapper';
+
+      function toggleSticky() {
+        if ($("#sticker").hasClass(customClassName)) {
+          $("#sticker").sticky('destroy');
+        } else {
+          $("#sticker").sticky({ topSpacing: 50, className: customClassName, wrapperClassName: customWrapperClassName });
+        }
+      }
+      toggleSticky();
+
+      $("html").click(function() {
+        toggleSticky();
+      });
     });
   </script>
   <style>
@@ -16,7 +30,7 @@
       margin: 0;
     }
 
-    .my-wrapper {
+    .sticky-wrapper {
       border: 1px solid #ccc;
       width: 340px;
       margin-left: auto;
@@ -38,7 +52,7 @@
       border-radius: 50px;
     }
 
-    .sticky #sticker {
+    .is-sticky #sticker {
       background: orange;
       margin-left: auto;
       margin-right: auto;
@@ -50,6 +64,7 @@
   <p>This is test this is text this is text at the top.</p>
   <div id="sticker">
     <p>This is the sticky thingy that is really cool.</p>
+    <p>Click anywhere to remove the sticky ability.</p>
   </div>
   <p>This is test this is text this is text at the bottom.</p>
 </body>

@@ -3,8 +3,8 @@
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
-// Created: 2/14/2011
-// Date: 2/12/2012
+// Created: 2011-02-14
+// Date: 2012-08-30
 // Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen as you scroll
 //              It will only set the 'top' and 'position' of your element, you
@@ -14,14 +14,14 @@
     var defaults = {
             topSpacing: 0,
             bottomSpacing: 0,
-            className: 'is-sticky',
+            elementClassName: 'is-sticky',
             wrapperClassName: 'sticky-wrapper'
         },
         $window = $(window),
         $document = $(document),
-        sticked = [],
+        sticked = ( typeof sticked != 'undefined' && sticked instanceof Array ) ? sticked : [];
         windowHeight = $window.height(),
-        scroller = function() {
+        scroller = function(forceRefresh) {
             var scrollTop = $window.scrollTop(),
                 documentHeight = $document.height(),
                 dwh = documentHeight - windowHeight,
@@ -35,8 +35,8 @@
                         s.stickyElement
                             .css('position', '')
                             .css('top', '')
-                            .removeClass(s.className);
-                        s.stickyElement.parent().removeClass(s.className);
+                            .removeClass(s.elementClassName);
+                        s.stickyElement.parent().removeClass(s.elementClassName);
                         s.currentTop = null;
                     }
                 }
@@ -48,12 +48,12 @@
                     } else {
                         newTop = s.topSpacing;
                     }
-                    if (s.currentTop != newTop) {
+                    if ( (s.currentTop != newTop) || (forceRefresh == true) ) {
                         s.stickyElement
                             .css('position', 'fixed')
                             .css('top', newTop)
-                            .addClass(s.className);
-                        s.stickyElement.parent().addClass(s.className);
+                            .addClass(s.elementClassName);
+                        s.stickyElement.parent().addClass(s.elementClassName);
                         s.currentTop = newTop;
                     }
                 }
@@ -75,14 +75,43 @@
                     stickyElement.wrapAll(wrapper);
                     var stickyWrapper = stickyElement.parent();
                     stickyWrapper.css('height', stickyElement.outerHeight());
+                    stickyElement.attr('data-position', stickyElement.css('position'));
+                    stickyElement.attr('data-top', stickyElement.css('top'));
                     sticked.push({
                         topSpacing: o.topSpacing,
                         bottomSpacing: o.bottomSpacing,
                         stickyElement: stickyElement,
                         currentTop: null,
                         stickyWrapper: stickyWrapper,
-                        className: o.className
+                        elementClassName: o.elementClassName
                     });
+                    scroller(true);
+                });
+            },
+            destroy: function(options) {
+                var o = $.extend(defaults, options);
+                return this.each(function() {
+                    var stickyElement = $(this);
+                    var stickyWrapper = stickyElement.parent();
+
+                    stickyElement
+                        .css('position', stickyElement.attr('data-position'))
+                        .css('top', stickyElement.attr('data-top'))
+                        .removeAttr('data-position')
+                        .removeAttr('data-top')
+                        .removeClass(o.elementClassName)
+                        .unwrap();
+
+                    var elementsToRemove = [];
+                    
+                    for (var i = 0; i < sticked.length; i++) {
+                        var s = sticked[i];
+                        if (s.stickyElement.attr('id') === stickyElement.attr('id')) elementsToRemove.push(i);
+                    }
+                    for (var i = 0; i < elementsToRemove.length; i++) {
+                        sticked.splice(elementsToRemove[i], 1);
+                    }
+                    elementsToRemove = null;
                 });
             },
             update: scroller
