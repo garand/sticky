@@ -32,6 +32,7 @@ This is how it works:
 - `bottomSpacing`: Pixels between the page bottom and the element's bottom.
 - `className`: CSS class added to the element and its wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
+- `getWidthFrom`: Element from which the sticky element should get its fixed width. Must be a valid jQuery selector.
 
 ## Methods
 
