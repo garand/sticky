@@ -6,7 +6,7 @@
   <script type="text/javascript" src="jquery.sticky.js"></script>
   <script>
     $(window).load(function(){
-      $("#sticker").sticky({ topSpacing: 50, className: 'sticky', wrapperClassName: 'my-wrapper' });
+      $("#sticker").sticky({ topSpacing: 0, center:true, className:"hey" });
     });
   </script>
   <style>
@@ -14,13 +14,6 @@
       height: 10000px;
       padding: 0;
       margin: 0;
-    }
-
-    .my-wrapper {
-      border: 1px solid #ccc;
-      width: 340px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     #sticker {
@@ -37,13 +30,6 @@
       text-shadow: 0 1px 1px rgba(0,0,0,.2);
       border-radius: 50px;
     }
-
-    .sticky #sticker {
-      background: orange;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
   </style>
 </head>
 <body>

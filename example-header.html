@@ -6,7 +6,7 @@
   <script type="text/javascript" src="jquery.sticky.js"></script>
   <script>
     $(window).load(function(){
-      $("#header").sticky({ topSpacing: 0, className: 'sticky', wrapperClassName: 'my-wrapper' });
+      $("#header").sticky({ topSpacing: 0 });
     });
   </script>
   <style>
@@ -14,10 +14,6 @@
       height: 10000px;
       padding: 0;
       margin: 0;
-    }
-
-    .my-wrapper {
-      border: 1px solid #ccc;
     }
 
     #header {
@@ -30,13 +26,9 @@
       text-align: center;
       padding: 10px;
       text-shadow: 0 1px 1px rgba(0,0,0,.2);
+      width:100%;
+      box-sizing:border-box;
     }
-
-    .sticky #header {
-      background: orange;
-      width: 100%;
-    }
-
   </style>
 </head>
 <body>
