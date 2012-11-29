@@ -86,7 +86,7 @@
           }
 
           if (stickyElement.css("float") == "right") {
-            stickyElement.css({float:"none"}).parent().css({float:"right"});
+            stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
           var stickyWrapper = stickyElement.parent();
