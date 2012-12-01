@@ -32,6 +32,9 @@ This is how it works:
 - `bottomSpacing`: Pixels between the page bottom and the element's bottom.
 - `className`: CSS class added to the element and its wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
+- `stuckClassName`: CSS class added to wrapper when element is re-stuck to page.
+- `stickTo`: jQuery selector string of element at which point the sticky element should unstick from scrolling, re-stick to page. (May be passed as HTML5 data attribute on sticky element.)
+- `stickDelay`: Integer that is the number of pixels sticky element should scroll off screen before sticking to scroll. (May be passed as HTML5 data attribute on sticky element.)
 
 ## Methods
 
