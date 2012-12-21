@@ -32,6 +32,7 @@ This is how it works:
 - `bottomSpacing`: Pixels between the page bottom and the element's bottom.
 - `className`: CSS class added to the element and its wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
+- `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
 
 ## Methods
 
