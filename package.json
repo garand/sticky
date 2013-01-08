@@ -1,0 +1,43 @@
+{
+    "name": "jquery-sticky",
+    "version": "1.0.0",
+    "description": "Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.",
+    "categories": [ "UI", "DOM" ],
+    "author": {
+        "name": "Anthony Garand"
+    },
+    "contributors": [
+        {
+            "name": "German M. Bravo"
+        },
+        {
+            "name": "Ruud Kamphuis"
+        },
+        {
+            "name": "Leonardo C. Daronco"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/garand/sticky.git"
+    },
+    "bugs": {
+        "web": "https://github.com/garand/sticky/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://jquery.com/blob/master/MIT-LICENSE.txt"
+        },
+        {
+            "type": "GPL",
+            "url": "http://jquery.com/blob/master/GPL-LICENSE.txt"
+        }
+    ],
+    "github": "https://github.com/garand/sticky",
+
+    "main": "jquery.sticky.js",
+    "dependencies": {
+        "jquery": null
+    }
+}

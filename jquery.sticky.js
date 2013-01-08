@@ -1,4 +1,4 @@
-// Sticky Plugin
+// Sticky Plugin v1.0.0 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
