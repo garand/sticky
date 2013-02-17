@@ -29,7 +29,7 @@
         dwh = documentHeight - windowHeight,
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
-      for (var i = 0; i < sticked.length; i++) {
+      for (var i = 0; i < sticked.length; i++) if(sticked[i]){
         var s = sticked[i],
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
@@ -70,6 +70,14 @@
       windowHeight = $window.height();
     },
     methods = {
+      unsticky: function(){
+        for (var i = 0; i < sticked.length; i++) if(sticked[i]){
+          if(sticked[i].stickyElement.is($(this))){
+            sticked[i].stickyElement.unwrap().attr("style","");
+            delete sticked[i];
+          }
+        }
+      }
       init: function(options) {
         var o = $.extend(defaults, options);
         return this.each(function() {
