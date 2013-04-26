@@ -68,6 +68,14 @@
     },
     resizer = function() {
       windowHeight = $window.height();
+      $wrapper = $(this);
+      $(".sticky-wrapper").each(function() {
+        var stickyWrapper = $(this);
+        var outerHeight = stickyWrapper.children().first().outerHeight();
+        if (stickyWrapper.data("height") != outerHeight) {
+          $(this).css('height', outerHeight);
+        }
+      });
     },
     methods = {
       init: function(options) {
@@ -90,7 +98,9 @@
           }
 
           var stickyWrapper = stickyElement.parent();
-          stickyWrapper.css('height', stickyElement.outerHeight());
+          var outerHeight = stickyElement.outerHeight();
+          stickyWrapper.data('height', outerHeight);
+          stickyWrapper.css('height', outerHeight);
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
