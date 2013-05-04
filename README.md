@@ -14,7 +14,7 @@ This is how it works:
 - Include jQuery & Sticky.
 - Call Sticky.
 
-```javascript
+```html
 <script src="jquery.js"></script>
 <script src="jquery.sticky.js"></script>
 <script>
