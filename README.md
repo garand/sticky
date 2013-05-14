@@ -33,6 +33,7 @@ This is how it works:
 - `className`: CSS class added to the element and its wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
+- `setWidth`: Choose whether the "sticky" element should have a fixed width set when "sticked". Default: `true`.
 
 ## Methods
 
