@@ -60,7 +60,7 @@
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
 
-            s.stickyElement.parent().addClass(s.className);
+            s.stickyElement.parent().addClass(s.className).width(s.stickyElement.outerWidth());
             s.currentTop = newTop;
           }
         }
