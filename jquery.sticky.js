@@ -57,7 +57,8 @@
               .css('top', newTop);
 
             if (typeof s.getWidthFrom !== 'undefined') {
-              s.stickyElement.css('width', $(s.getWidthFrom).width());
+              var stickyWidth = $.isNumeric(s.getWidthFrom) ? s.getWidthFrom : $(s.getWidthFrom).width();
+              s.stickyElement.css('width', stickyWidth);
             }
 
             s.stickyElement.parent().addClass(s.className);
