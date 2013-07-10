@@ -37,6 +37,7 @@
         if (scrollTop <= etse) {
           if (s.currentTop !== null) {
             s.stickyElement
+              .css('width', '')
               .css('position', '')
               .css('top', '');
             s.stickyElement.parent().removeClass(s.className);
@@ -53,6 +54,7 @@
           }
           if (s.currentTop != newTop) {
             s.stickyElement
+              .css('width', s.stickyElement.width())
               .css('position', 'fixed')
               .css('top', newTop);
 
