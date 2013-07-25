@@ -15,6 +15,7 @@
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
+      offClassName: 'is-not-sticky',
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: ''
@@ -40,6 +41,7 @@
               .css('position', '')
               .css('top', '');
             s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.parent().addClass(s.offClassName);
             s.currentTop = null;
           }
         }
@@ -61,6 +63,7 @@
             }
 
             s.stickyElement.parent().addClass(s.className);
+            s.stickyElement.parent().removeClass(s.offClassName);
             s.currentTop = newTop;
           }
         }
@@ -78,7 +81,8 @@
           var stickyId = stickyElement.attr('id');
           var wrapper = $('<div></div>')
             .attr('id', stickyId + '-sticky-wrapper')
-            .addClass(o.wrapperClassName);
+            .addClass(o.wrapperClassName)
+            .addClass(o.offClassName);
           stickyElement.wrapAll(wrapper);
 
           if (o.center) {
@@ -98,6 +102,7 @@
             currentTop: null,
             stickyWrapper: stickyWrapper,
             className: o.className,
+            offClassName: o.offClassName,
             getWidthFrom: o.getWidthFrom
           });
         });
