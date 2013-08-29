@@ -68,7 +68,7 @@
                 return this.each(function() {
                     var stickyElement = $(this);
 
-                    stickyId = stickyElement.attr('id');
+                    var stickyId = stickyElement.attr('id');
                     var wrapper = $('<div></div>')
                         .attr('id', stickyId + '-sticky-wrapper')
                         .addClass(o.wrapperClassName);
