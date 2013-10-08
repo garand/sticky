@@ -39,7 +39,7 @@
             s.stickyElement
               .css('position', '')
               .css('top', '');
-            s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.trigger('sticky-end', [s]).parent().removeClass(s.className);
             s.currentTop = null;
           }
         }
@@ -60,7 +60,7 @@
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
 
-            s.stickyElement.parent().addClass(s.className);
+            s.stickyElement.trigger('sticky-start', [s]).parent().addClass(s.className);
             s.currentTop = newTop;
           }
         }
