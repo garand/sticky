@@ -68,6 +68,12 @@
     },
     resizer = function() {
       windowHeight = $window.height();
+      $(this).parent().css('height', $(this).outerHeight());
+
+      for (var i = 0; i < sticked.length; i++) {
+          var sticker = sticked[i];
+          sticker.stickyWrapper.css('height', sticker.stickyElement.outerHeight());
+      }
     },
     methods = {
       init: function(options) {
@@ -91,6 +97,7 @@
 
           var stickyWrapper = stickyElement.parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
+          stickyElement.data('sticker-id', sticked.length + 1);
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
@@ -102,7 +109,28 @@
           });
         });
       },
-      update: scroller
+      update: scroller,
+      disable: function () {
+          var $this = $(this),
+            id = $this.data('sticker-id');
+
+          $this
+            .css('position', '')
+            .css('top', '');
+          $this.parent().removeClass(defaults.className);
+
+          var newSticked = [];
+          for (var i in sticked) {
+            if (sticked[i].stickyElement.data('sticker-id') == id) {
+              continue;
+            }
+
+            newSticked.push(sticked[i]);
+          }
+
+          sticked = newSticked;
+          newSticked = null;
+      }
     };
 
   // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
