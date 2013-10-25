@@ -38,4 +38,5 @@ This is how it works:
 
 - `sticky(options)`: Initializer. `options` is optional.
 - `sticky('update')`: Recalculates the element's position.
+- `sticky('disable')`: Disable the sticky element's behavior.
  
