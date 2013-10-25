@@ -67,8 +67,10 @@
       }
     },
     resizer = function() {
+      var $this = $(this);
+
       windowHeight = $window.height();
-      $(this).parent().css('height', $(this).outerHeight());
+      $this.parent().css('height', $this.outerHeight());
 
       for (var i = 0; i < sticked.length; i++) {
           var sticker = sticked[i];
@@ -117,7 +119,8 @@
           $this
             .css('position', '')
             .css('top', '');
-          $this.parent().removeClass(defaults.className);
+          $this.parent().removeClass(defaults.className)
+            .css('height', '');
 
           var newSticked = [];
           for (var i in sticked) {
