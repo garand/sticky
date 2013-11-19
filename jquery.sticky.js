@@ -15,6 +15,7 @@
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
+      wrap: true,
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: ''
@@ -71,21 +72,30 @@
     },
     methods = {
       init: function(options) {
-        var o = $.extend(defaults, options);
+        var o = $.extend({}, defaults, options);
         return this.each(function() {
           var stickyElement = $(this);
 
-          var stickyId = stickyElement.attr('id');
-          var wrapper = $('<div></div>')
-            .attr('id', stickyId + '-sticky-wrapper')
-            .addClass(o.wrapperClassName);
-          stickyElement.wrapAll(wrapper);
+          if (o.wrap) {
+            var stickyId = stickyElement.attr('id') ? stickyElement.attr('id') : 'node' + sticked.length;
+            var wrapper = $('<div></div>')
+              .attr('id', stickyId + '-sticky-wrapper')
+              .addClass(o.wrapperClassName);
+            stickyElement.wrapAll(wrapper);
+          }
+
+          if (stickyElement.is('tr')) {
+            stickyElement.parents('table').first().find('th, td').each(function() {
+              $(this).width($(this).width());
+            });
+          }
 
           if (o.center) {
             stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
           if (stickyElement.css("float") == "right") {
+            stickyElement.css('left', stickyElement.offset().left);
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
@@ -96,6 +106,7 @@
             bottomSpacing: o.bottomSpacing,
             stickyElement: stickyElement,
             currentTop: null,
+            wrap: o.wrap,
             stickyWrapper: stickyWrapper,
             className: o.className,
             getWidthFrom: o.getWidthFrom
