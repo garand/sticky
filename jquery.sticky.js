@@ -1,8 +1,9 @@
-// Sticky Plugin v1.0.0 for jQuery
+// Sticky Plugin v1.0.1 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
+// Improvements by Paweł Piskorz (PablO)
 // Created: 2/14/2011
 // Date: 2/12/2012
 // Website: http://labs.anthonygarand.com/sticky
@@ -17,7 +18,8 @@
       className: 'is-sticky',
       wrapperClassName: 'sticky-wrapper',
       center: false,
-      getWidthFrom: ''
+      getWidthFrom: '',
+      getTopSpacingFrom: undefined,
     },
     $window = $(window),
     $document = $(document),
@@ -30,8 +32,13 @@
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
       for (var i = 0; i < sticked.length; i++) {
-        var s = sticked[i],
-          elementTop = s.stickyWrapper.offset().top,
+        var s = sticked[i];
+
+        if (typeof s.getTopSpacingFrom !== 'undefined') {
+          s.topSpacing = $(s.getTopSpacingFrom).outerHeight();
+        }
+
+        var elementTop = s.stickyWrapper.offset().top;
           etse = elementTop - s.topSpacing - extra;
 
         if (scrollTop <= etse) {
@@ -98,7 +105,8 @@
             currentTop: null,
             stickyWrapper: stickyWrapper,
             className: o.className,
-            getWidthFrom: o.getWidthFrom
+            getWidthFrom: o.getWidthFrom,
+            getTopSpacingFrom: o.getTopSpacingFrom
           });
         });
       },
