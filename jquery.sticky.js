@@ -102,6 +102,24 @@
           });
         });
       },
+      unstick: function(){
+        return this.each(function() {
+
+          var stickyElement = $(this);
+
+          stickyElement.unwrap();
+          stickyElement.attr('style', '');
+            
+          sticked = sticked.filter(function( stickedItem ){
+            return stickedItem.stickyElement[0] != stickyElement[0]; 
+          });
+        });
+      },
+      restick: function() {
+         methods.unstick.apply(this);
+         methods.init.apply(this, arguments);
+         scroller(); 
+      },
       update: scroller
     };
 
