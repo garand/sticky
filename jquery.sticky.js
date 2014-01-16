@@ -10,6 +10,10 @@
 //       It will only set the 'top' and 'position' of your element, you
 //       might need to adjust the width in some cases.
 //
+//
+//  CUSTOMIZED TO REMOVE STICKY ELEMENTS with .unstick()
+//
+//
 
 (function($) {
   var defaults = {
@@ -105,10 +109,8 @@
       },
       update: scroller,
       unstick: function(options) {
-        var o = $.extend(defaults, options);
         return this.each(function() {
           var unstickyElement = $(this);
-          var unstickyId = unstickyElement.attr('id');
 
           removeIdx = -1;
           for (var i = 0; i < sticked.length; i++) 
@@ -148,7 +150,6 @@
   };
 
   $.fn.unstick = function(method) {
-    console.log('unsticking');
     if (methods[method]) {
       return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
     } else if (typeof method === 'object' || !method ) {
