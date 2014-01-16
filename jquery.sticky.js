@@ -9,11 +9,6 @@
 // Description: Makes an element on the page stick on the screen as you scroll
 //       It will only set the 'top' and 'position' of your element, you
 //       might need to adjust the width in some cases.
-//
-//
-//  CUSTOMIZED TO REMOVE STICKY ELEMENTS with .unstick()
-//
-//
 
 (function($) {
   var defaults = {
