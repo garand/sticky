@@ -24,44 +24,47 @@
     sticked = [],
     windowHeight = $window.height(),
     scroller = function() {
-      var scrollTop = $window.scrollTop(),
-        documentHeight = $document.height(),
-        dwh = documentHeight - windowHeight,
-        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+      // check if CSS position:sticky is working
+      if (sticked[0].stickyElement.css('position') != 'sticky' && sticked[0].stickyElement.css('position').split("-").pop() != 'sticky') {
+        var scrollTop = $window.scrollTop(),
+          documentHeight = $document.height(),
+          dwh = documentHeight - windowHeight,
+          extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
-      for (var i = 0; i < sticked.length; i++) {
-        var s = sticked[i],
-          elementTop = s.stickyWrapper.offset().top,
-          etse = elementTop - s.topSpacing - extra;
+        for (var i = 0; i < sticked.length; i++) {
+          var s = sticked[i],
+            elementTop = s.stickyWrapper.offset().top,
+            etse = elementTop - s.topSpacing - extra;
 
-        if (scrollTop <= etse) {
-          if (s.currentTop !== null) {
-            s.stickyElement
-              .css('position', '')
-              .css('top', '');
-            s.stickyElement.parent().removeClass(s.className);
-            s.currentTop = null;
-          }
-        }
-        else {
-          var newTop = documentHeight - s.stickyElement.outerHeight()
-            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
-          if (newTop < 0) {
-            newTop = newTop + s.topSpacing;
-          } else {
-            newTop = s.topSpacing;
-          }
-          if (s.currentTop != newTop) {
-            s.stickyElement
-              .css('position', 'fixed')
-              .css('top', newTop);
-
-            if (typeof s.getWidthFrom !== 'undefined') {
-              s.stickyElement.css('width', $(s.getWidthFrom).width());
+          if (scrollTop <= etse) {
+            if (s.currentTop !== null) {
+              s.stickyElement
+                .css('position', '')
+                .css('top', '');
+              s.stickyElement.parent().parent().removeClass(s.className);
+              s.currentTop = null;
             }
+          }
+          else {
+            var newTop = documentHeight - s.stickyElement.outerHeight()
+              - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+            if (newTop < 0) {
+              newTop = newTop + s.topSpacing;
+            } else {
+              newTop = s.topSpacing;
+            }
+            if (s.currentTop != newTop) {
+              s.stickyElement
+                .css('position', 'fixed')
+                .css('top', newTop);
 
-            s.stickyElement.parent().addClass(s.className);
-            s.currentTop = newTop;
+              if (typeof s.getWidthFrom !== 'undefined') {
+                s.stickyElement.css('width', $(s.getWidthFrom).width());
+              }
+
+              s.stickyElement.parent().parent().addClass(s.className);
+              s.currentTop = newTop;
+            }
           }
         }
       }
@@ -80,16 +83,27 @@
             .attr('id', stickyId + '-sticky-wrapper')
             .addClass(o.wrapperClassName);
           stickyElement.wrapAll(wrapper);
+          var container = $('<div></div>')
+            .attr('id', stickyId + '-sticky-container')
+            .css({
+              'position': 'absolute',
+              'height': $document.height() - $(this).position().top - o.bottomSpacing
+            });
+          stickyElement.wrapAll(container);
+
+          $(this).addClass('sticky-element')
+            .css('top', o.topSpacing);
+          $('<style type="text/css"> .sticky-element { position: -webkit-sticky; position: -moz-sticky; position: -o-sticky; position: -ms-sticky; position: sticky; } </style>').appendTo("head");
 
           if (o.center) {
-            stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+            stickyElement.parent().parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
           if (stickyElement.css("float") == "right") {
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
-          var stickyWrapper = stickyElement.parent();
+          var stickyWrapper = stickyElement.parent().parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
           sticked.push({
             topSpacing: o.topSpacing,
