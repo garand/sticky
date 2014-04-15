@@ -40,6 +40,11 @@
               .css('position', '')
               .css('top', '');
             s.stickyElement.parent().removeClass(s.className);
+
+            // REMOVE CALLBACK EVENT
+            if (typeof defaults.unSticky == 'function') { 
+		        defaults.unSticky.call(this);
+		    }            
             s.currentTop = null;
           }
         }
@@ -61,6 +66,11 @@
             }
 
             s.stickyElement.parent().addClass(s.className);
+            // ADD CALLBACK EVENT
+            if (typeof defaults.isSticky == 'function') { 
+		        defaults.isSticky.call(this);
+		    }            
+
             s.currentTop = newTop;
           }
         }

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+  <title>Sticky Plugin</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.sticky.js"></script>
+  <script>
+    $(window).load(function(){
+      $("#header").sticky({ 
+      		topSpacing: 0,
+	  		isSticky: function() {
+		  		// DO SOME FANCY STUFF 
+				$("#header").prepend('<div id="myLogo">StickIt</div>');
+				console.log('Sticky enabled');
+			},
+			unSticky: function() {
+				$('#myLogo').remove();
+				console.log('Sticky disabled');
+			}
+      	});
+    });
+  </script>
+  <style>
+    body {
+      height: 10000px;
+      padding: 0;
+      margin: 0;
+    }
+
+    #header {
+      background: #bada55;
+      color: white;
+      font-family: Droid Sans;
+      font-size: 18px;
+      line-height: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      padding: 10px 0;
+      text-shadow: 0 1px 1px rgba(0,0,0,.2);
+      width:100%;
+      box-sizing:border-box;
+    }
+    
+    #myLogo {
+	    float: left;
+	    padding: 10px 20px;
+		position: relative;
+    }
+    
+  </style>
+</head>
+<body>
+  <p>This is test this is text this is text at the top.</p>
+  <div id="header">
+    <p>This is the sticky thingy that is really cool.</p>
+  </div>
+  <p>This is test this is text this is text at the bottom.</p>
+</body>
+</html>
