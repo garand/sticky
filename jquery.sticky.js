@@ -17,7 +17,8 @@
       className: 'is-sticky',
       wrapperClassName: 'sticky-wrapper',
       center: false,
-      getWidthFrom: ''
+      getWidthFrom: '',
+      responsiveWidth: false
     },
     $window = $(window),
     $document = $(document),
@@ -68,6 +69,13 @@
     },
     resizer = function() {
       windowHeight = $window.height();
+
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i];
+        if (typeof s.getWidthFrom !== 'undefined' && s.responsiveWidth === true) {
+          s.stickyElement.css('width', $(s.getWidthFrom).width());
+        }
+      }
     },
     methods = {
       init: function(options) {
@@ -99,7 +107,8 @@
             currentTop: null,
             stickyWrapper: stickyWrapper,
             className: o.className,
-            getWidthFrom: o.getWidthFrom
+            getWidthFrom: o.getWidthFrom,
+            responsiveWidth: o.responsiveWidth
           });
         });
       },
@@ -109,7 +118,7 @@
           var unstickyElement = $(this);
 
           var removeIdx = -1;
-          for (var i = 0; i < sticked.length; i++) 
+          for (var i = 0; i < sticked.length; i++)
           {
             if (sticked[i].stickyElement.get(0) == unstickyElement.get(0))
             {
