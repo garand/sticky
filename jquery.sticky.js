@@ -52,13 +52,13 @@
             newTop = s.topSpacing;
           }
           if (s.currentTop != newTop) {
-            s.stickyElement
-              .css('position', 'fixed')
-              .css('top', newTop);
-
             if (typeof s.getWidthFrom !== 'undefined') {
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
+            
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop);
 
             s.stickyElement.parent().addClass(s.className);
             s.currentTop = newTop;
