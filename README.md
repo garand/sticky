@@ -41,6 +41,7 @@ This is how it works:
 - `className`: CSS class added to the element's wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
+- `getTopSpacingFrom`: Selector of element referenced to set topSpacing of "sticky" element. This will override topSpacing if provided
 
 ## Methods
 
