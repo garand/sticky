@@ -40,6 +40,7 @@
               .css('position', '')
               .css('top', '');
             s.stickyElement.parent().removeClass(s.className);
+            if(s.getWidthFrom != "") s.stickyElement.css("width","");
             s.currentTop = null;
           }
         }
