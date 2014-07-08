@@ -4,7 +4,7 @@
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
 // Created: 2/14/2011
-// Date: 2/12/2012
+// Date: 5/12/2014
 // Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen as you scroll
 //       It will only set the 'top' and 'position' of your element, you
@@ -33,8 +33,9 @@
         var s = sticked[i],
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
-
-        if (scrollTop <= etse) {
+        
+        //If we should detach sticky
+        if (scrollTop <= etse + s.originalTopPadding) {
           if (s.currentTop !== null) {
             s.stickyElement
               .css('position', '')
@@ -43,9 +44,12 @@
             s.currentTop = null;
           }
         }
+
+        //Need to calculate sticky position
         else {
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+
           if (newTop < 0) {
             newTop = newTop + s.topSpacing;
           } else {
@@ -92,6 +96,8 @@
 
           var stickyWrapper = stickyElement.parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
+          
+          //Track original top offset
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
@@ -99,7 +105,8 @@
             currentTop: null,
             stickyWrapper: stickyWrapper,
             className: o.className,
-            getWidthFrom: o.getWidthFrom
+            getWidthFrom: o.getWidthFrom,
+            originalTopPadding: (stickyElement.css('top').length > 0) ? parseInt(stickyElement.css('top')) : 0
           });
         });
       },
