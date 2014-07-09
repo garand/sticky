@@ -68,6 +68,11 @@
     },
     resizer = function() {
       windowHeight = $window.height();
+
+      for (var i = 0; i < sticked.length; i++) {
+        var s = sticked[i];
+        s.stickyElement.parent().css('height', s.stickyElement.outerHeight());
+      }
     },
     methods = {
       init: function(options) {
