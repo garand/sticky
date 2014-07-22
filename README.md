@@ -47,3 +47,16 @@ This is how it works:
 - `sticky(options)`: Initializer. `options` is optional.
 - `sticky('update')`: Recalculates the element's position.
  
+## Events
+
+- `sticky-start`: When the element becomes sticky.
+- `sticky-end`: When the element returns to its original location
+
+To subscribe to events use jquery:
+
+```html
+<script>
+  $('#sticker').on('sticky-start', function() { console.log("Started"); });
+  $('#sticker').on('sticky-end', function() { console.log("Ended"); });
+</script>
+```
