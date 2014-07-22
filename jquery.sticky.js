@@ -17,7 +17,8 @@
       className: 'is-sticky',
       wrapperClassName: 'sticky-wrapper',
       center: false,
-      getWidthFrom: ''
+      getWidthFrom: '',
+      setWidth: true
     },
     $window = $(window),
     $document = $(document),
@@ -56,7 +57,7 @@
               .css('position', 'fixed')
               .css('top', newTop);
 
-            if (typeof s.getWidthFrom !== 'undefined') {
+            if (s.setWidth && typeof s.getWidthFrom !== 'undefined') {
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
 
