@@ -39,5 +39,6 @@
     "main": "jquery.sticky.js",
     "dependencies": {
         "jquery": null
-    }
+    },
+    "ignore": []
 }
