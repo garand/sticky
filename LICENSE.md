@@ -1,5 +1,5 @@
-Copyright 2013 Anthony Garand
-http://anthonygarand.com/
+Copyright 2014 Anthony Garand
+http://garand.me
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
