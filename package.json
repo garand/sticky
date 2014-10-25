@@ -1,0 +1,13 @@
+{
+  "name": "sticky",
+  "description": "",
+  "private": true,
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "browser-sync": "^1.5.1",
+    "gulp": "^3.8.8",
+    "gulp-autoprefixer": "^1.0.1",
+    "gulp-minify-css": "^0.3.10",
+    "gulp-sass": "^1.0.0"
+  }
+}

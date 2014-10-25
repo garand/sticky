@@ -1,0 +1,12 @@
+@mixin page-width {
+  width: 100%;
+  height: 100%;
+  max-width: $page-width;
+  padding: $spacing * 2;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media #{$mobile} {
+    padding: $spacing;
+  }
+}

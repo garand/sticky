@@ -1,0 +1,42 @@
+html,
+body {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+header,
+footer {
+  display: table-row;
+  height: 1px;
+
+  [class$="inner"] {
+    @include page-width;
+  }
+}
+
+.container {
+  display: table-row;
+  height: 100%;
+
+  [class$="inner"] {
+    display: table;
+    @include page-width;
+    padding: 0;
+    border-spacing: $spacing * 2;
+
+    @media #{$mobile} {
+      padding: 0;
+      border-spacing: 0;
+    }
+
+    > * {
+      display: table-cell;
+
+      @media #{$mobile} {
+        display: block;
+        margin: $spacing;
+      }
+    }
+  }
+}
