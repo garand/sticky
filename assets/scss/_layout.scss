@@ -40,3 +40,23 @@ footer {
     }
   }
 }
+
+.sidebar {
+  width: $sidebar-width;
+
+  @media #{$mobile} {
+    width: auto;
+  }
+}
+
+@if $debug {
+  * { background: rgba( 0, 0, 0, .2 ) }
+  * * { background: rgba( 0, 0, 0, .2 ) }
+  * * * { background: rgba( 0, 0, 0, .2 ) }
+  * * * * { background: rgba( 0, 0, 0, .2 ) }
+  * * * * * { background: rgba( 0, 0, 0, .2 ) }
+
+  header { background: rgba( red, .5 ); }
+  .container { background: rgba( green, .5 ); }
+  footer { background: rgba( blue, .5 ); }
+}

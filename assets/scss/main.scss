@@ -3,3 +3,28 @@
 @import "settings";
 @import "mixins";
 @import "layout";
+
+.module-container {
+  height: 400px;
+}
+
+.sidebar {
+  padding-bottom: 20px;
+}
+
+.module {
+  border-radius: 5px;
+  background: #fff;
+  overflow: hidden;
+  margin: 0 $spacing;
+
+  &-header {
+    background: #eee;
+    padding: $spacing;
+  }
+
+  p {
+    margin: 0;
+    padding: $spacing;
+  }
+}
