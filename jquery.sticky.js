@@ -138,10 +138,19 @@
   // should be more efficient than using $window.scroll(scroller) and $window.resize(resizer):
   if (window.addEventListener) {
     window.addEventListener('scroll', scroller, false);
-    window.addEventListener('resize', resizer, false);
+
+    if (navigator.appVersion.indexOf('MSIE 8.') === -1) {
+      window.addEventListener('resize', resizer, false);
+    } else {
+      window.addEventListener('resize', function() {setTimeout(resizer, 100);}, false)
+    }
   } else if (window.attachEvent) {
     window.attachEvent('onscroll', scroller);
-    window.attachEvent('onresize', resizer);
+    if (navigator.appVersion.indexOf('MSIE 8.') === -1) {
+      window.attachEvent('onresize', resizer);
+    } else {
+      window.attachEvent('onresize', function() {setTimeout(resizer, 100);})
+    }
   }
 
   $.fn.sticky = function(method) {
