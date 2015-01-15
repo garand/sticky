@@ -80,6 +80,23 @@
       }
     },
     methods = {
+      reset: function() {
+        var element = $(this);
+        var element_index = -1;
+        for(var i=0; i<sticked.length; i++) {
+          if (sticked[i].stickyElement.attr('id') == element.attr('id')) {
+            element_index = i;
+            break;
+          }
+        }
+        element.unwrap();
+        if (sticked[element_index].originalFloatRight) {
+  		element.css('float', 'right');        
+        }
+        if (element_index>=0) {
+          sticked.splice(element_index,1);
+        }
+      },
       init: function(options) {
         var o = $.extend({}, defaults, options);
         return this.each(function() {
@@ -95,14 +112,18 @@
           if (o.center) {
             stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
+          
+          var originalFloatRight = false;
 
           if (stickyElement.css("float") == "right") {
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
+            originalFloatRight = true;
           }
 
           var stickyWrapper = stickyElement.parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
           sticked.push({
+            originalFloatRight: originalFloatRight, 
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
             stickyElement: stickyElement,

@@ -25,6 +25,7 @@ This is how it works:
 ```
 
 - Edit your css to position the elements (check the examples in `example-*.html`).
+- Remove stickyness with the `reset` method.
 
 - To unstick an object
 
@@ -47,6 +48,7 @@ This is how it works:
 
 - `sticky(options)`: Initializer. `options` is optional.
 - `sticky('update')`: Recalculates the element's position.
+- `sticky('reset')`: Remove the stickyness of the element.
  
 ## Events
 
