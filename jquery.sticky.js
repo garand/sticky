@@ -101,7 +101,7 @@
           }
 
           var stickyWrapper = stickyElement.parent();
-          stickyWrapper.css('height', stickyElement.outerHeight());
+          stickyWrapper.css('height', stickyElement.outerHeight(true));
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
