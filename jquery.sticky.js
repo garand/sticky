@@ -114,7 +114,7 @@
           });
         });
       },
-      update: scroller,
+      update: resizer,
       unstick: function(options) {
         return this.each(function() {
           var unstickyElement = $(this);
