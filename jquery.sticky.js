@@ -18,12 +18,16 @@
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: '',
-      responsiveWidth: false
+      responsiveWidth: false,
+      stickyOnElement: ''
     },
     $window = $(window),
     $document = $(document),
     sticked = [],
     windowHeight = $window.height(),
+    checkStickyOnElement = function(s, scrollTop) {
+      return s.stickyOnElement == '' || $(s.stickyOnElement + ':first').position().top >= scrollTop;
+    },
     scroller = function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
@@ -35,7 +39,7 @@
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
 
-        if (scrollTop <= etse) {
+        if (scrollTop <= etse || checkStickyOnElement(s, scrollTop)) {
           if (s.currentTop !== null) {
             s.stickyElement
               .css('width', '')
@@ -110,7 +114,8 @@
             stickyWrapper: stickyWrapper,
             className: o.className,
             getWidthFrom: o.getWidthFrom,
-            responsiveWidth: o.responsiveWidth
+            responsiveWidth: o.responsiveWidth,
+            stickyOnElement: o.stickyOnElement
           });
         });
       },

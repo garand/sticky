@@ -41,7 +41,9 @@ This is how it works:
 - `className`: CSS class added to the element's wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
-- `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
+- `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom)
+- `stickyOnElement`: Do sticky when a specific element is reached (".main-content")
+.
 
 ## Methods
 
