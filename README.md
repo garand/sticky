@@ -47,11 +47,14 @@ This is how it works:
 
 - `sticky(options)`: Initializer. `options` is optional.
 - `sticky('update')`: Recalculates the element's position.
- 
+
 ## Events
 
 - `sticky-start`: When the element becomes sticky.
 - `sticky-end`: When the element returns to its original location
+- `sticky-update`: When the element is sticked but position must be updated for constraints reasons
+- `sticky-bottom-reached`: When the element reached the bottom space limit
+- `sticky-end`: When the element unreached the bottom space limit
 
 To subscribe to events use jquery:
 
@@ -59,5 +62,8 @@ To subscribe to events use jquery:
 <script>
   $('#sticker').on('sticky-start', function() { console.log("Started"); });
   $('#sticker').on('sticky-end', function() { console.log("Ended"); });
+  $('#sticker').on('sticky-update', function() { console.log("Update"); });
+  $('#sticker').on('sticky-bottom-reached', function() { console.log("Bottom reached"); });
+  $('#sticker').on('sticky-botton-unreached', function() { console.log("Bottom unreached"); });
 </script>
 ```
