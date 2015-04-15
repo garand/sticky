@@ -128,7 +128,7 @@
           var i = sticked.length;
           while ( i-- > 0 )
           {
-            if (sticked[i].stickyElement.get(0) == that)
+            if (sticked[i].stickyElement.get(0) === that)
             {
                 splice.call(sticked,i,1);
                 removeIdx = i;
@@ -137,7 +137,12 @@
           if(removeIdx != -1)
           {
             unstickyElement.unwrap();
-            unstickyElement.removeAttr('style');
+            unstickyElement
+              .css('width', '')
+              .css('position', '')
+              .css('top', '')
+              .css('float', '')
+            ;
           }
         });
       }
