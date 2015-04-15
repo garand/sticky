@@ -21,6 +21,7 @@
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: '',
+      widthFromWrapper: true,
       responsiveWidth: false
     },
     $window = $(window),
@@ -60,7 +61,13 @@
             newTop = s.topSpacing;
           }
           if (s.currentTop != newTop) {
-            var newWidth = s.getWidthFrom && $(s.getWidthFrom).width() || null;
+            var newWidth;
+            if ( s.getWidthFrom ) {
+                newWidth = $(s.getWidthFrom).width() || null;
+            }
+            else if(s.widthFromWrapper) {
+                newWidth = s.stickyWrapper.width();
+            }
             if ( newWidth == null ) {
                 newWidth = s.stickyElement.width();
             }
