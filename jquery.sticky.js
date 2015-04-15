@@ -41,9 +41,11 @@
         if (scrollTop <= etse) {
           if (s.currentTop !== null) {
             s.stickyElement
-              .css('width', '')
-              .css('position', '')
-              .css('top', '');
+              .css({
+                'width': '',
+                'position': '',
+                'top': ''
+              });
             s.stickyElement.parent().removeClass(s.className);
             s.stickyElement.trigger('sticky-end', [s]);
             s.currentTop = null;
@@ -58,14 +60,14 @@
             newTop = s.topSpacing;
           }
           if (s.currentTop != newTop) {
+            var newWidth = s.getWidthFrom && $(s.getWidthFrom).width() || null;
+            if ( newWidth == null ) {
+                newWidth = s.stickyElement.width();
+            }
             s.stickyElement
-              .css('width', s.stickyElement.width())
+              .css('width', newWidth)
               .css('position', 'fixed')
               .css('top', newTop);
-
-            if ( s.getWidthFrom ) {
-              s.stickyElement.css('width', $(s.getWidthFrom).width());
-            }
 
             s.stickyElement.parent().addClass(s.className);
             s.stickyElement.trigger('sticky-start', [s]);
@@ -138,10 +140,12 @@
           {
             unstickyElement.unwrap();
             unstickyElement
-              .css('width', '')
-              .css('position', '')
-              .css('top', '')
-              .css('float', '')
+              .css({
+                'width': '',
+                'position': '',
+                'top': '',
+                'float': ''
+              })
             ;
           }
         });
