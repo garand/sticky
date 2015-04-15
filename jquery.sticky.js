@@ -69,6 +69,13 @@
         }
       }
     },
+    stickedResizer = function () {
+        console.debug('1');
+        for (var i = 0; i < sticked.length; i++) {
+            var s = sticked[i];
+            s.stickyWrapper.css('height', s.stickyElement.outerHeight());
+        }
+    },
     resizer = function() {
       windowHeight = $window.height();
 
@@ -102,6 +109,7 @@
 
           var stickyWrapper = stickyElement.parent();
           stickyWrapper.css('height', stickyElement.outerHeight());
+          stickyElement.on('resize', stickedResizer);
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
@@ -114,6 +122,7 @@
           });
         });
       },
+      stickedResizer: stickedResizer,
       update: scroller,
       unstick: function(options) {
         return this.each(function() {
