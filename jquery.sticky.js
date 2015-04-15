@@ -89,22 +89,25 @@
           var stickyElement = $(this);
 
           var stickyId = stickyElement.attr('id');
-          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName 
+          var stickyHeight = stickyElement.outerHeight();
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName
           var wrapper = $('<div></div>')
-            .attr('id', stickyId + '-sticky-wrapper')
+            .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
+
           stickyElement.wrapAll(wrapper);
 
+          var stickyWrapper = stickyElement.parent();
+
           if (o.center) {
-            stickyElement.parent().css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
+            stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
           if (stickyElement.css("float") == "right") {
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
-          var stickyWrapper = stickyElement.parent();
-          stickyWrapper.css('height', stickyElement.outerHeight());
+          stickyWrapper.css('height', stickyHeight);
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
@@ -125,7 +128,7 @@
 
           var removeIdx = -1;
           var i = sticked.length;
-          while ( i-- > 0 ) 
+          while ( i-- > 0 )
           {
             if (sticked[i].stickyElement.get(0) == that)
             {
