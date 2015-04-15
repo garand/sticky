@@ -110,16 +110,12 @@
           }
 
           stickyWrapper.css('height', stickyHeight);
-          sticked.push({
-            topSpacing: o.topSpacing,
-            bottomSpacing: o.bottomSpacing,
-            stickyElement: stickyElement,
-            currentTop: null,
-            stickyWrapper: stickyWrapper,
-            className: o.className,
-            getWidthFrom: o.getWidthFrom,
-            responsiveWidth: o.responsiveWidth
-          });
+
+          o.stickyElement = stickyElement;
+          o.stickyWrapper = stickyWrapper;
+          o.currentTop    = null;
+
+          sticked.push(o);
         });
       },
       update: scroller,
