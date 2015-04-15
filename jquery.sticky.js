@@ -63,7 +63,7 @@
               .css('position', 'fixed')
               .css('top', newTop);
 
-            if (typeof s.getWidthFrom !== 'undefined') {
+            if ( s.getWidthFrom ) {
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
 
@@ -79,7 +79,7 @@
 
       for (var i = 0; i < sticked.length; i++) {
         var s = sticked[i];
-        if (typeof s.getWidthFrom !== 'undefined' && s.responsiveWidth === true) {
+        if ( s.getWidthFrom && s.responsiveWidth === true ) {
           s.stickyElement.css('width', $(s.getWidthFrom).width());
         }
       }
