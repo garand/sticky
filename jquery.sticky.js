@@ -44,7 +44,8 @@
               .css('width', '')
               .css('position', '')
               .css('top', '');
-            s.stickyElement.trigger('sticky-end', [s]).parent().removeClass(s.className);
+            s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.trigger('sticky-end', [s]);
             s.currentTop = null;
           }
         }
@@ -66,7 +67,8 @@
               s.stickyElement.css('width', $(s.getWidthFrom).width());
             }
 
-            s.stickyElement.trigger('sticky-start', [s]).parent().addClass(s.className);
+            s.stickyElement.parent().addClass(s.className);
+            s.stickyElement.trigger('sticky-start', [s]);
             s.currentTop = newTop;
           }
         }
