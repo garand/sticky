@@ -1,10 +1,10 @@
-// Sticky Plugin v1.0.1 for jQuery
+// Sticky Plugin v1.0.2 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
 // Created: 2/14/2011
-// Date: 15/04/2015
+// Date: 16/04/2015
 // Website: http://labs.anthonygarand.com/sticky
 // Description: Makes an element on the page stick on the screen as you scroll
 //       It will only set the 'top' and 'position' of your element, you
@@ -21,7 +21,7 @@
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: '',
-      widthFromWrapper: true,
+      widthFromWrapper: true, // works only when .getWidthFrom is empty
       responsiveWidth: false
     },
     $window = $(window),
@@ -88,8 +88,17 @@
 
       for (var i = 0; i < sticked.length; i++) {
         var s = sticked[i];
-        if ( s.getWidthFrom && s.responsiveWidth === true ) {
-          s.stickyElement.css('width', $(s.getWidthFrom).width());
+        var newWidth = null;
+        if ( s.getWidthFrom ) {
+            if ( s.responsiveWidth === true ) {
+                newWidth = $(s.getWidthFrom).width();
+            }
+        }
+        else if(s.widthFromWrapper) {
+            newWidth = s.stickyWrapper.width();
+        }
+        if ( newWidth != null ) {
+            s.stickyElement.css('width', newWidth);
         }
       }
     },
