@@ -7,7 +7,10 @@ Sticky is a jQuery plugin that gives you the ability to make any element on your
 This is how it works:
 
 - When the target element is about to be hidden, the plugin will add the class `className` to it (and to a wrapper added as its parent), set it to `position: fixed` and calculate its new `top`, based on the element's height, the page height and the `topSpacing` and `bottomSpacing` options.
-- That's it. In some cases you might need to set a fixed width to your element when it is "sticked". Check the `example-*.html` files for some examples.
+- That's it. 
+In some cases you might need to set a fixed width to your element when it is "sticked".
+But by default (`widthFromWrapper == true`) sticky updates elements's width to the wrapper's width.
+Check the `example-*.html` files for some examples.
 
 ## Usage
 
@@ -41,6 +44,7 @@ This is how it works:
 - `className`: CSS class added to the element's wrapper when "sticked".
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
+- `widthFromWrapper`: boolean determining whether width of the "sticky" element should be updated to match the wrapper's width. Wrapper is a placeholder for "sticky" element while it is fixed (out of static elements flow), and it's width depends on the context and CSS rules.
 - `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
 
 ## Methods
