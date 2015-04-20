@@ -108,6 +108,14 @@
         if ( newWidth != null ) {
             s.stickyElement.css('width', newWidth);
         }
+
+        if (s.followHorizontalScroll && s.stickyElement.css('position') === 'fixed') {
+          var newLeft = s.stickyWrapper.offset().left;
+          if (newLeft !== s.leftPosition) {
+            s.leftPosition = newLeft;
+            scroller();
+          }
+        }
       }
     },
     methods = {
