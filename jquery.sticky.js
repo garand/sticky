@@ -18,7 +18,8 @@
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: '',
-      responsiveWidth: false
+      responsiveWidth: false,
+      followHorizontalScroll: false
     },
     $window = $(window),
     $document = $(document),
@@ -28,7 +29,8 @@
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
         dwh = documentHeight - windowHeight,
-        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0,
+        scrollLeft = $window.scrollLeft();
 
       for (var i = 0; i < sticked.length; i++) {
         var s = sticked[i],
@@ -40,14 +42,17 @@
             s.stickyElement
               .css('width', '')
               .css('position', '')
-              .css('top', '');
+              .css('top', '')
+              .css('left', '');
             s.stickyElement.trigger('sticky-end', [s]).parent().removeClass(s.className);
             s.currentTop = null;
+            s.currentLeft = null;
           }
         }
         else {
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          var newLeft = s.leftPosition - scrollLeft;
           if (newTop < 0) {
             newTop = newTop + s.topSpacing;
           } else {
@@ -65,6 +70,9 @@
 
             s.stickyElement.trigger('sticky-start', [s]).parent().addClass(s.className);
             s.currentTop = newTop;
+          }
+          if (s.followHorizontalScroll && newLeft !== s.currentLeft && s.stickyElement.css('position') === 'fixed') {
+            s.stickyElement.css('left', newLeft);
           }
         }
       }
@@ -86,7 +94,7 @@
           var stickyElement = $(this);
 
           var stickyId = stickyElement.attr('id');
-          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName 
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName
           var wrapper = $('<div></div>')
             .attr('id', stickyId + '-sticky-wrapper')
             .addClass(o.wrapperClassName);
@@ -110,7 +118,9 @@
             stickyWrapper: stickyWrapper,
             className: o.className,
             getWidthFrom: o.getWidthFrom,
-            responsiveWidth: o.responsiveWidth
+            responsiveWidth: o.responsiveWidth,
+            leftPosition: stickyElement.offset().left,
+            followHorizontalScroll: o.followHorizontalScroll
           });
         });
       },
