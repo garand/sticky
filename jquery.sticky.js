@@ -119,7 +119,7 @@
             className: o.className,
             getWidthFrom: o.getWidthFrom,
             responsiveWidth: o.responsiveWidth,
-            leftPosition: stickyElement.offset().left,
+            leftPosition: stickyWrapper.offset().left,
             followHorizontalScroll: o.followHorizontalScroll
           });
         });
