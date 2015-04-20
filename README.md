@@ -42,6 +42,7 @@ This is how it works:
 - `wrapperClassName`: CSS class added to the wrapper.
 - `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
 - `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
+- `followHorizontalScroll`: Boolean telling to sticked element to follow horizontal scrollbar movement instead of staying fixed
 
 ## Methods
 
