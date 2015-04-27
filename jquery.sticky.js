@@ -122,7 +122,7 @@
         var o = $.extend({}, defaults, options);
         return this.each(function() {
           var stickyElement = $(this);
-
+        if(!$(this).parent().hasClass(defaults.wrapperClassName)){
           var stickyId = stickyElement.attr('id');
           var stickyHeight = stickyElement.outerHeight();
           var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName
@@ -149,6 +149,7 @@
           o.currentTop    = null;
 
           sticked.push(o);
+        }
         });
       },
       update: scroller,
