@@ -58,7 +58,7 @@ Check the `example-*.html` files for some examples.
 - `sticky-end`: When the element returns to its original location
 - `sticky-update`: When the element is sticked but position must be updated for constraints reasons
 - `sticky-bottom-reached`: When the element reached the bottom space limit
-- `sticky-end`: When the element unreached the bottom space limit
+- `sticky-bottom-unreached`: When the element unreached the bottom space limit
 
 To subscribe to events use jquery:
 
