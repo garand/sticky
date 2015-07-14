@@ -68,6 +68,6 @@ To subscribe to events use jquery:
   $('#sticker').on('sticky-end', function() { console.log("Ended"); });
   $('#sticker').on('sticky-update', function() { console.log("Update"); });
   $('#sticker').on('sticky-bottom-reached', function() { console.log("Bottom reached"); });
-  $('#sticker').on('sticky-botton-unreached', function() { console.log("Bottom unreached"); });
+  $('#sticker').on('sticky-bottom-unreached', function() { console.log("Bottom unreached"); });
 </script>
 ```
