@@ -1,14 +1,14 @@
-// Sticky Plugin v1.0.2 for jQuery
+// Sticky Plugin v1.0.3 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
-// Created: 2/14/2011
-// Date: 16/04/2015
-// Website: http://labs.anthonygarand.com/sticky
+// Created: 02/14/2011
+// Date: 07/20/2015
+// Website: http://stickyjs.com/
 // Description: Makes an element on the page stick on the screen as you scroll
-//       It will only set the 'top' and 'position' of your element, you
-//       might need to adjust the width in some cases.
+//              It will only set the 'top' and 'position' of your element, you
+//              might need to adjust the width in some cases.
 
 (function($) {
     var slice = Array.prototype.slice; // save ref to original slice()
@@ -65,13 +65,12 @@
           }
           if (s.currentTop != newTop) {
             var newWidth;
-            if ( s.getWidthFrom ) {
+            if (s.getWidthFrom) {
                 newWidth = $(s.getWidthFrom).width() || null;
-            }
-            else if(s.widthFromWrapper) {
+            } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
             }
-            if ( newWidth == null ) {
+            if (newWidth == null) {
                 newWidth = s.stickyElement.width();
             }
             s.stickyElement
@@ -107,15 +106,14 @@
       for (var i = 0; i < sticked.length; i++) {
         var s = sticked[i];
         var newWidth = null;
-        if ( s.getWidthFrom ) {
-            if ( s.responsiveWidth === true ) {
+        if (s.getWidthFrom) {
+            if (s.responsiveWidth === true) {
                 newWidth = $(s.getWidthFrom).width();
             }
-        }
-        else if(s.widthFromWrapper) {
+        } else if(s.widthFromWrapper) {
             newWidth = s.stickyWrapper.width();
         }
-        if ( newWidth != null ) {
+        if (newWidth != null) {
             s.stickyElement.css('width', newWidth);
         }
       }
@@ -162,16 +160,13 @@
 
           var removeIdx = -1;
           var i = sticked.length;
-          while ( i-- > 0 )
-          {
-            if (sticked[i].stickyElement.get(0) === that)
-            {
+          while (i-- > 0) {
+            if (sticked[i].stickyElement.get(0) === that) {
                 splice.call(sticked,i,1);
                 removeIdx = i;
             }
           }
-          if(removeIdx != -1)
-          {
+          if(removeIdx != -1) {
             unstickyElement.unwrap();
             unstickyElement
               .css({
@@ -213,7 +208,6 @@
     } else {
       $.error('Method ' + method + ' does not exist on jQuery.sticky');
     }
-
   };
   $(function() {
     setTimeout(scroller, 0);
