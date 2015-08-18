@@ -45,7 +45,7 @@
         dwh = documentHeight - windowHeight,
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
-      for (var i = 0; i < sticked.length; i++) {
+      for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i],
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
@@ -74,7 +74,7 @@
           } else {
             newTop = s.topSpacing;
           }
-          if (s.currentTop != newTop) {
+          if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
                 newWidth = $(s.getWidthFrom).width() || null;
@@ -114,11 +114,11 @@
     resizer = function() {
       windowHeight = $window.height();
 
-      for (var i = 0; i < sticked.length; i++) {
+      for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i];
         var newWidth = null;
         if (s.getWidthFrom) {
-            if (s.responsiveWidth === true) {
+            if (s.responsiveWidth) {
                 newWidth = $(s.getWidthFrom).width();
             }
         } else if(s.widthFromWrapper) {
@@ -137,7 +137,7 @@
 
           var stickyId = stickyElement.attr('id');
           var stickyHeight = stickyElement.outerHeight();
-          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName
+          var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
           var wrapper = $('<div></div>')
             .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
@@ -150,7 +150,7 @@
             stickyWrapper.css({width:stickyElement.outerWidth(),marginLeft:"auto",marginRight:"auto"});
           }
 
-          if (stickyElement.css("float") == "right") {
+          if (stickyElement.css("float") === "right") {
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
@@ -177,7 +177,7 @@
                 removeIdx = i;
             }
           }
-          if(removeIdx != -1) {
+          if(removeIdx !== -1) {
             unstickyElement.unwrap();
             unstickyElement
               .css({
