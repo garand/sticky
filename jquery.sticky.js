@@ -33,7 +33,8 @@
       center: false,
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
-      responsiveWidth: false
+      responsiveWidth: false,
+      followHorizontalScroll: false
     },
     $window = $(window),
     $document = $(document),
@@ -43,7 +44,8 @@
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
         dwh = documentHeight - windowHeight,
-        extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
+        extra = (scrollTop > dwh) ? dwh - scrollTop : 0,
+        scrollLeft = $window.scrollLeft();
 
       for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i],
@@ -59,16 +61,19 @@
               .css({
                 'width': '',
                 'position': '',
-                'top': ''
+                'top': '',
+                'left': ''
               });
             s.stickyElement.parent().removeClass(s.className);
             s.stickyElement.trigger('sticky-end', [s]);
             s.currentTop = null;
+            s.currentLeft = null;
           }
         }
         else {
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+          var newLeft = s.leftPosition - scrollLeft;
           if (newTop < 0) {
             newTop = newTop + s.topSpacing;
           } else {
@@ -108,6 +113,9 @@
 
             s.currentTop = newTop;
           }
+          if (s.followHorizontalScroll && newLeft !== s.currentLeft && s.stickyElement.css('position') === 'fixed') {
+            s.stickyElement.css('left', newLeft);
+          }
         }
       }
     },
@@ -126,6 +134,13 @@
         }
         if (newWidth != null) {
             s.stickyElement.css('width', newWidth);
+        }
+
+        if (s.followHorizontalScroll) {
+            s.leftPosition = s.stickyWrapper.offset().left;
+            if (s.stickyElement.css('position') === 'fixed') {
+              scroller();
+            }
         }
       }
     },
@@ -159,6 +174,7 @@
           o.stickyElement = stickyElement;
           o.stickyWrapper = stickyWrapper;
           o.currentTop    = null;
+          o.leftPosition  = stickyWrapper.offset().left;
 
           sticked.push(o);
         });
@@ -184,6 +200,7 @@
                 'width': '',
                 'position': '',
                 'top': '',
+                'left': '',
                 'float': ''
               })
             ;
