@@ -108,6 +108,20 @@
 
             s.currentTop = newTop;
           }
+
+          // Check if sticky has reached end of container and stop sticking
+          var stickyHeight = s.stickyElement.outerHeight();
+          if( -1*(s.stickyWrapper.offset().top + s.stickyWrapper.outerHeight()) > stickyHeight + s.topSpacing ) {
+            s.stickyElement
+              .css('position', 'absolute')
+              .css('top', '')
+              .css('bottom', 0);
+          } else {
+            s.stickyElement
+              .css('position', 'fixed')
+              .css('top', newTop)
+              .css('bottom', '');
+          }
         }
       }
     },
