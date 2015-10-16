@@ -50,8 +50,8 @@
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
 
-	//update height in case of dynamic content
-	s.stickyWrapper.css('height', s.stickyElement.outerHeight());
+        //update height in case of dynamic content
+        s.stickyWrapper.css('height', s.stickyElement.outerHeight());
 
         if (scrollTop <= etse) {
           if (s.currentTop !== null) {
@@ -110,8 +110,10 @@
           }
 
           // Check if sticky has reached end of container and stop sticking
-          var stickyHeight = s.stickyElement.outerHeight();
-          if( -1*(s.stickyWrapper.offset().top + s.stickyWrapper.outerHeight()) > stickyHeight + s.topSpacing ) {
+          var stickyWrapperContainer = s.stickyWrapper.parent();
+          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
+
+          if( unstick ) {
             s.stickyElement
               .css('position', 'absolute')
               .css('top', '')
