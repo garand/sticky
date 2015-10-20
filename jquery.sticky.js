@@ -179,7 +179,7 @@
           sticked.push(o);
         });
       },
-      update: scroller,
+      update: resizer,
       unstick: function(options) {
         return this.each(function() {
           var that = this;
