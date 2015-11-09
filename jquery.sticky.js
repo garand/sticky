@@ -152,7 +152,6 @@
           var stickyElement = $(this);
 
           var stickyId = stickyElement.attr('id');
-          var stickyHeight = stickyElement.outerHeight();
           var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
           var wrapper = $('<div></div>')
             .attr('id', wrapperId)
@@ -170,14 +169,41 @@
             stickyElement.css({"float":"none"}).parent().css({"float":"right"});
           }
 
-          stickyWrapper.css('height', stickyHeight);
-
           o.stickyElement = stickyElement;
           o.stickyWrapper = stickyWrapper;
           o.currentTop    = null;
 
           sticked.push(o);
+
+          methods.setWrapperHeight(this);
+          methods.setupChangeListeners(this);
         });
+      },
+
+      setWrapperHeight: function(stickyElement) {
+        var element = $(stickyElement);
+        var stickyWrapper = element.parent();
+        if (stickyWrapper) {
+          stickyWrapper.css('height', element.outerHeight());
+        }
+      },
+
+      setupChangeListeners: function(stickyElement) {
+        if (window.MutationObserver) {
+          var mutationObserver = new window.MutationObserver(function(mutations) {
+            if (mutations[0].addedNodes.length || mutations[0].removedNodes.length) {
+              methods.setWrapperHeight(stickyElement);
+            }
+          });
+          mutationObserver.observe(stickyElement, {subtree: true, childList: true});
+        } else {
+          stickyElement.addEventListener('DOMNodeInserted', function() {
+            methods.setWrapperHeight(stickyElement);
+          }, false);
+          stickyElement.addEventListener('DOMNodeRemoved', function() {
+            methods.setWrapperHeight(stickyElement);
+          }, false);
+        }
       },
       update: scroller,
       unstick: function(options) {
