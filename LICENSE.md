@@ -1,4 +1,4 @@
-Copyright 2014 Anthony Garand
+Copyright 2014-2016 Anthony Garand
 http://garand.me
 
 Permission is hereby granted, free of charge, to any person obtaining
