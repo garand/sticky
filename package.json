@@ -21,7 +21,7 @@
     "url": "https://github.com/garand/sticky/issues"
   },
   "homepage": "https://github.com/garand/sticky#readme",
-  "dependencies": {
+  "peerDependencies": {
     "jquery": "*"
   }
 }
