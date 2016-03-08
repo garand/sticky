@@ -39,13 +39,14 @@ Check the `example-*.html` files for some examples.
 
 ## Options
 
-- `topSpacing`: Pixels between the page top and the element's top.
-- `bottomSpacing`: Pixels between the page bottom and the element's bottom.
-- `className`: CSS class added to the element's wrapper when "sticked".
-- `wrapperClassName`: CSS class added to the wrapper.
-- `getWidthFrom`: Selector of element referenced to set fixed width of "sticky" element.
-- `widthFromWrapper`: boolean determining whether width of the "sticky" element should be updated to match the wrapper's width. Wrapper is a placeholder for "sticky" element while it is fixed (out of static elements flow), and it's width depends on the context and CSS rules.
-- `responsiveWidth`: boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
+- `topSpacing`: (default: `0`) Pixels between the page top and the element's top.
+- `bottomSpacing`: (default: `0`) Pixels between the page bottom and the element's bottom.
+- `className`: (default: `'is-sticky'`) CSS class added to the element's wrapper when "sticked".
+- `wrapperClassName`: (default: `'sticky-wrapper'`) CSS class added to the wrapper.
+- `center`: (default: `false`) Boolean determining whether the sticky element should be horizontally centered in the page.
+- `getWidthFrom`: (default: `''`) Selector of element referenced to set fixed width of "sticky" element.
+- `widthFromWrapper`: (default: `true`) Boolean determining whether width of the "sticky" element should be updated to match the wrapper's width. Wrapper is a placeholder for "sticky" element while it is fixed (out of static elements flow), and its width depends on the context and CSS rules. Works only as long `getWidthForm` isn't set.
+- `responsiveWidth`: (default: `false`) Boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
 
 ## Methods
 
