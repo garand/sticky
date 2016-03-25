@@ -48,7 +48,9 @@
       for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i],
           elementTop = s.stickyWrapper.offset().top,
-          etse = elementTop - s.topSpacing - extra;
+          topSpacing = typeof s.topSpacing === 'function' ? s.topSpacing() : s.topSpacing,
+          bottomSpacing = typeof s.bottomSpacing === 'function' ? s.bottomSpacing() : s.bottomSpacing,
+          etse = elementTop - topSpacing - extra;
 
         //update height in case of dynamic content
         s.stickyWrapper.css('height', s.stickyElement.outerHeight());
@@ -68,11 +70,11 @@
         }
         else {
           var newTop = documentHeight - s.stickyElement.outerHeight()
-            - s.topSpacing - s.bottomSpacing - scrollTop - extra;
+            - topSpacing - bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
-            newTop = newTop + s.topSpacing;
+            newTop = newTop + topSpacing;
           } else {
-            newTop = s.topSpacing;
+            newTop = topSpacing;
           }
           if (s.currentTop !== newTop) {
             var newWidth;
@@ -98,10 +100,10 @@
               s.stickyElement.trigger('sticky-update', [s]);
             }
 
-            if (s.currentTop === s.topSpacing && s.currentTop > newTop || s.currentTop === null && newTop < s.topSpacing) {
+            if (s.currentTop === topSpacing && s.currentTop > newTop || s.currentTop === null && newTop < topSpacing) {
               // just reached bottom || just started to stick but bottom is already reached
               s.stickyElement.trigger('sticky-bottom-reached', [s]);
-            } else if(s.currentTop !== null && newTop === s.topSpacing && s.currentTop < newTop) {
+            } else if(s.currentTop !== null && newTop === topSpacing && s.currentTop < newTop) {
               // sticky is started && sticked at topSpacing && overflowing from top just finished
               s.stickyElement.trigger('sticky-bottom-unreached', [s]);
             }
@@ -111,7 +113,7 @@
 
           // Check if sticky has reached end of container and stop sticking
           var stickyWrapperContainer = s.stickyWrapper.parent();
-          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
+          var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= topSpacing);
 
           if( unstick ) {
             s.stickyElement
