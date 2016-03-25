@@ -144,6 +144,9 @@
             s.stickyElement.css('width', newWidth);
         }
       }
+      
+      // Sizes may have changed in response to the window size change
+      scroller();
     },
     methods = {
       init: function(options) {
