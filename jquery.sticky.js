@@ -9,7 +9,6 @@
 // Description: Makes an element on the page stick on the screen as you scroll
 //              It will only set the 'top' and 'position' of your element, you
 //              might need to adjust the width in some cases.
-
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
@@ -80,11 +79,15 @@
             var newWidth;
             if (s.getWidthFrom) {
                 newWidth = $(s.getWidthFrom).width() || null;
+                console.log('s.getWidthFrom');
+                console.log(newWidth);
             } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
+                console.log('s.widthFromWrapper');
             }
             if (newWidth == null) {
                 newWidth = s.stickyElement.width();
+                 console.log('null');
             }
             s.stickyElement
               .css('width', newWidth)
@@ -141,12 +144,19 @@
         if (s.getWidthFrom) {
             if (s.responsiveWidth) {
                 newWidth = $(s.getWidthFrom).width();
+                console.log(newWidth);
             }
         } else if(s.widthFromWrapper) {
             newWidth = s.stickyWrapper.width();
         }
         if (newWidth != null) {
-            s.stickyElement.css('width', newWidth);
+            s.stickyElement.css('width', newWidth); //creates a fixed width.. everything grabs from this new value and loops over  
+            s.stickyElement.css({
+                'width': '',
+                'position': ''
+              });
+            s.currentTop = null;
+            scroller(); // Need to be more effective
         }
       }
     },
