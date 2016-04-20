@@ -1,6 +1,6 @@
 {
   "name": "jquery-sticky",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Sticky is a jQuery plugin that gives you the ability to make any element on your page always stay visible.",
   "main": "jquery.sticky.js",
   "files": [
