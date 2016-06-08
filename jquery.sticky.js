@@ -162,7 +162,11 @@
             .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
 
-          stickyElement.wrapAll(wrapper);
+          stickyElement.wrapAll(function() {
+            if ($(this).parent("#" + wrapperId).length == 0) {
+                    return wrapper;
+            }
+});
 
           var stickyWrapper = stickyElement.parent();
 
