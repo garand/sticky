@@ -34,7 +34,8 @@
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
       responsiveWidth: false,
-      zIndex: 'auto'
+      zIndex: 'auto',
+      backgroundColor: ''
     },
     $window = $(window),
     $document = $(document),
@@ -61,7 +62,8 @@
                 'width': '',
                 'position': '',
                 'top': '',
-                'z-index': ''
+                'z-index': '',
+                'background-color': ''
               });
             s.stickyElement.parent().removeClass(s.className);
             s.stickyElement.trigger('sticky-end', [s]);
@@ -90,7 +92,8 @@
               .css('width', newWidth)
               .css('position', 'fixed')
               .css('top', newTop)
-              .css('z-index', s.zIndex);
+              .css('z-index', s.zIndex)
+              .css('background-color', s.backgroundColor);
 
             s.stickyElement.parent().addClass(s.className);
 
@@ -121,13 +124,15 @@
               .css('position', 'absolute')
               .css('top', '')
               .css('bottom', 0)
-              .css('z-index', '');
+              .css('z-index', '')
+              .css('background-color', '');
           } else {
             s.stickyElement
               .css('position', 'fixed')
               .css('top', newTop)
               .css('bottom', '')
-              .css('z-index', s.zIndex);
+              .css('z-index', s.zIndex)
+              .css('background-color', s.backgroundColor);
           }
         }
       }
