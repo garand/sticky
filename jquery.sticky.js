@@ -206,12 +206,21 @@
           });
           mutationObserver.observe(stickyElement, {subtree: true, childList: true});
         } else {
-          stickyElement.addEventListener('DOMNodeInserted', function() {
-            methods.setWrapperHeight(stickyElement);
-          }, false);
-          stickyElement.addEventListener('DOMNodeRemoved', function() {
-            methods.setWrapperHeight(stickyElement);
-          }, false);
+          if (window.addEventListener) {
+            stickyElement.addEventListener('DOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+            stickyElement.addEventListener('DOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            }, false);
+          } else if (window.attachEvent) {
+            stickyElement.attachEvent('onDOMNodeInserted', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+            stickyElement.attachEvent('onDOMNodeRemoved', function() {
+              methods.setWrapperHeight(stickyElement);
+            });
+          }
         }
       },
       update: scroller,
