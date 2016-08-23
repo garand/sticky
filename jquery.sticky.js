@@ -1,10 +1,11 @@
-// Sticky Plugin v1.0.4 for jQuery
+// Sticky Plugin v1.0.5 for jQuery
 // =============
 // Author: Anthony Garand
 // Improvements by German M. Bravo (Kronuz) and Ruud Kamphuis (ruudk)
 // Improvements by Leonardo C. Daronco (daronco)
+// Improvements by Ivijan-Stefan Stipic (CreativForm)
 // Created: 02/14/2011
-// Date: 07/20/2015
+// Date: 08/23/2016
 // Website: http://stickyjs.com/
 // Description: Makes an element on the page stick on the screen as you scroll
 //              It will only set the 'top' and 'position' of your element, you
@@ -51,9 +52,10 @@
           elementTop = s.stickyWrapper.offset().top,
           etse = elementTop - s.topSpacing - extra;
 
+          if(etse<=0) etse=0;
+
         //update height in case of dynamic content
         s.stickyWrapper.css('height', s.stickyElement.outerHeight());
-
         if (scrollTop <= etse) {
           if (s.currentTop !== null) {
             s.stickyElement
@@ -69,7 +71,7 @@
           }
         }
         else {
-          var newTop = documentHeight - s.stickyElement.outerHeight()
+          var newTop = $document.height() - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
             newTop = newTop + s.topSpacing;
