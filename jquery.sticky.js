@@ -40,7 +40,7 @@
     $document = $(document),
     sticked = [],
     windowHeight = $window.height(),
-    scroller = function() {
+    scroller = debounce(function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
         dwh = documentHeight - windowHeight,
@@ -63,7 +63,7 @@
                 'top': '',
                 'z-index': ''
               });
-            s.stickyElement.parent().removeClass(s.className);
+            s.stickyElement.parent().removeClass(s.className).css('height','');;
             s.stickyElement.trigger('sticky-end', [s]);
             s.currentTop = null;
           }
@@ -131,8 +131,8 @@
           }
         }
       }
-    },
-    resizer = function() {
+    },250),
+    resizer = debounce(function() {
       windowHeight = $window.height();
 
       for (var i = 0, l = sticked.length; i < l; i++) {
@@ -149,7 +149,7 @@
             s.stickyElement.css('width', newWidth);
         }
       }
-    },
+    },250),
     methods = {
       init: function(options) {
         return this.each(function() {
@@ -281,6 +281,23 @@
       $.error('Method ' + method + ' does not exist on jQuery.sticky');
     }
   };
+
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+
   $(function() {
     setTimeout(scroller, 0);
   });
