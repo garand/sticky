@@ -47,7 +47,7 @@ Check the `example-*.html` files for some examples.
 - `getWidthFrom`: (default: `''`) Selector of element referenced to set fixed width of "sticky" element.
 - `widthFromWrapper`: (default: `true`) Boolean determining whether width of the "sticky" element should be updated to match the wrapper's width. Wrapper is a placeholder for "sticky" element while it is fixed (out of static elements flow), and its width depends on the context and CSS rules. Works only as long `getWidthForm` isn't set.
 - `responsiveWidth`: (default: `false`) Boolean determining whether widths will be recalculated on window resize (using getWidthfrom).
-- `zIndex`: (default: `auto`) controls z-index of the sticked element.
+- `zIndex`: (default: `inherit`) controls z-index of the sticked element.
 
 ## Methods
 
