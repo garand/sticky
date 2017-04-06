@@ -22,8 +22,8 @@
         factory(jQuery);
     }
 }(function ($) {
-    var slice = Array.prototype.slice; // save ref to original slice()
-    var splice = Array.prototype.splice; // save ref to original slice()
+  var slice = Array.prototype.slice; // save ref to original slice()
+  var splice = Array.prototype.splice; // save ref to original slice()
 
   var defaults = {
       topSpacing: 0,
@@ -40,6 +40,24 @@
     $document = $(document),
     sticked = [],
     windowHeight = $window.height(),
+    adjustHeaderWidth = function(stickyElement) {
+      if (!stickyElement.parent().is('thead')) {
+        return;
+      }
+
+      th = stickyElement.find('th');
+      td = stickyElement.parents('table').find('tbody tr').eq(0).find('td');
+
+      // Update header columns width only if first row in tbody has the same columns count
+      if (th.length !== td.length) {
+        return;
+      }
+
+      th.each(function(index, element) {
+        minMaxWidth = td.eq(index).outerWidth();
+        $(element).css({"min-width": minMaxWidth, "max-width": minMaxWidth});
+      });
+    },
     scroller = function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
@@ -113,6 +131,8 @@
             s.currentTop = newTop;
           }
 
+          adjustHeaderWidth(s.stickyElement);
+
           // Check if sticky has reached end of container and stop sticking
           var stickyWrapperContainer = s.stickyWrapper.parent();
           var unstick = (s.stickyElement.offset().top + s.stickyElement.outerHeight() >= stickyWrapperContainer.offset().top + stickyWrapperContainer.outerHeight()) && (s.stickyElement.offset().top <= s.topSpacing);
@@ -149,6 +169,8 @@
         if (newWidth != null) {
             s.stickyElement.css('width', newWidth);
         }
+
+        adjustHeaderWidth(s.stickyElement);
       }
     },
     methods = {
@@ -159,15 +181,21 @@
 
           var stickyId = stickyElement.attr('id');
           var wrapperId = stickyId ? stickyId + '-' + defaults.wrapperClassName : defaults.wrapperClassName;
+
+          // No need to create additional wrapper if sticky is on "tr" inside of "thead"
+          if ($(this).parent().is('thead')) {
+            $(this).parent().attr('id', wrapperId).addClass(o.wrapperClassName);
+          }
+
           var wrapper = $('<div></div>')
             .attr('id', wrapperId)
             .addClass(o.wrapperClassName);
 
           stickyElement.wrapAll(function() {
             if ($(this).parent("#" + wrapperId).length == 0) {
-                    return wrapper;
+              return wrapper;
             }
-});
+          });
 
           var stickyWrapper = stickyElement.parent();
 
