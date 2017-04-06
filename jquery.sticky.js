@@ -39,7 +39,8 @@
     $window = $(window),
     $document = $(document),
     sticked = [],
-    windowHeight = $window.height(),
+    // Without checking for a loaded body, it is possible to throw an exception when attempting to scroll before the body of the page has been loaded.
+    documentHeight = $('body').length ? $document.height() : 0,
     scroller = function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
