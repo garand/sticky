@@ -260,7 +260,7 @@
     window.addEventListener('resize', resizer, false);
   } else if (window.attachEvent) {
     window.attachEvent('onscroll', scroller);
-    window.attachEvent('onresize', resizer);
+    window.attachEvent('onresize', function() {setTimeout(resizer, 100);})
   }
 
   $.fn.sticky = function(method) {
