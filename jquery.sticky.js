@@ -79,7 +79,7 @@
           if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
-                padding =  s.stickyElement.innerWidth() - s.stickyElement.width();
+                var padding =  s.stickyElement.innerWidth() - s.stickyElement.width();
                 newWidth = $(s.getWidthFrom).width() - padding || null;
             } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
