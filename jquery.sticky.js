@@ -206,6 +206,7 @@
             }
           });
           mutationObserver.observe(stickyElement, {subtree: true, childList: true});
+          $(stickyElement).data('sticky.mutationObserver', mutationObserver);
         } else {
           if (window.addEventListener) {
             stickyElement.addEventListener('DOMNodeInserted', function() {
@@ -239,6 +240,8 @@
             }
           }
           if(removeIdx !== -1) {
+            var mutationObserver = $(unstickyElement).data('sticky.mutationObserver');
+            mutationObserver.disconnect();
             unstickyElement.unwrap();
             unstickyElement
               .css({
