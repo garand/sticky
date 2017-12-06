@@ -26,6 +26,7 @@
     var splice = Array.prototype.splice; // save ref to original slice()
 
   var defaults = {
+      distance: 0,
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
@@ -34,7 +35,7 @@
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
       responsiveWidth: false,
-      zIndex: 'inherit'
+      zIndex: 'auto'
     },
     $window = $(window),
     $document = $(document),
@@ -47,9 +48,10 @@
         extra = (scrollTop > dwh) ? dwh - scrollTop : 0;
 
       for (var i = 0, l = sticked.length; i < l; i++) {
-        var s = sticked[i],
-          elementTop = s.stickyWrapper.offset().top,
-          etse = elementTop - s.topSpacing - extra;
+          var s = sticked[i];
+          if(!s) continue;
+          var elementTop = s.stickyWrapper.offset().top;
+          var etse = elementTop - s.topSpacing - extra;
 
         //update height in case of dynamic content
         s.stickyWrapper.css('height', s.stickyElement.outerHeight());
@@ -68,7 +70,7 @@
             s.currentTop = null;
           }
         }
-        else {
+        else if(scrollTop - etse > s.distance){
           var newTop = documentHeight - s.stickyElement.outerHeight()
             - s.topSpacing - s.bottomSpacing - scrollTop - extra;
           if (newTop < 0) {
@@ -79,8 +81,7 @@
           if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
-                padding =  s.stickyElement.innerWidth() - s.stickyElement.width();
-                newWidth = $(s.getWidthFrom).width() - padding || null;
+                newWidth = $(s.getWidthFrom).width() || null;
             } else if (s.widthFromWrapper) {
                 newWidth = s.stickyWrapper.width();
             }
