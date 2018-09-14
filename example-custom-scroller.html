@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+  <title>Sticky Plugin</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery.sticky.js"></script>
+  <style>
+    body {
+      height: 10000px;
+      padding: 0;
+      margin: 0;
+    }
+
+    p {
+      padding: 10px;
+    }
+
+    #scroller {
+      height: 500px;
+      overflow: auto;
+      background-color: cyan;
+    }
+
+    #scrollee {
+      height: 10000px;
+      padding: 0;
+      margin: 0;
+    }
+
+    #sticker {
+      background: #bada55;
+      color: white;
+      width: 300px;
+      font-family: Droid Sans;
+      font-size: 40px;
+      line-height: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      margin: 0 auto;
+      text-shadow: 0 1px 1px rgba(0,0,0,.2);
+      border-radius: 50px;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    In this example the dev has defined a specific scrollable area (the light-blue one)
+    <br>
+    The element will stick only when the user scrolls inside that specified area.
+  </p>
+  <div id="scroller">
+    <div id="scrollee">
+      <p>This is test this is text this is text at the top.</p>
+      <div id="sticker">
+        <p>This is the sticky thingy that is really cool.</p>
+      </div>
+      <p>This is test this is text this is text at the bottom.</p>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $("#sticker").sticky({
+        topSpacing: 0,
+        center:true,
+        className:"hey",
+        scroller: document.getElementById('scroller')
+      });
+    });
+  </script>
+</body>
+</html>

@@ -2,13 +2,8 @@
 <html>
 <head>
   <title>Sticky Plugin</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="jquery.sticky.js"></script>
-  <script>
-    $(window).load(function(){
-      $("#sticker").sticky({ topSpacing: 50 });
-    });
-  </script>
   <style>
     body {
       height: 10000px;
@@ -45,5 +40,10 @@
     </div>
     <p>This is test this is text this is text at the bottom.</p>
   </div>
+  <script>
+    $(function(){
+      $("#sticker").sticky({ topSpacing: 50 });
+    });
+  </script>
 </body>
 </html>
