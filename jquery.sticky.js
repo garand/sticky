@@ -39,7 +39,9 @@
     $window = $(window),
     $document = $(document),
     sticked = [],
-    windowHeight = $window.height(),
+    doctype = document.documentElement.previousSibling,
+    sticked = [],
+    windowHeight = (doctype) ? $window.height() : $window.prop('innerHeight'),
     scroller = function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
@@ -134,7 +136,7 @@
       }
     },
     resizer = function() {
-      windowHeight = $window.height();
+      windowHeight = (doctype) ? $window.height() : $window.prop('innerHeight');
 
       for (var i = 0, l = sticked.length; i < l; i++) {
         var s = sticked[i];
