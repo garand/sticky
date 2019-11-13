@@ -34,12 +34,15 @@
       getWidthFrom: '',
       widthFromWrapper: true, // works only when .getWidthFrom is empty
       responsiveWidth: false,
-      zIndex: 'inherit'
+      zIndex: 'inherit',
+      scrollStickyElement: false
     },
     $window = $(window),
     $document = $(document),
     sticked = [],
     windowHeight = $window.height(),
+    lastScroll = $window.scrollTop(),
+    stickyOffest = 0,
     scroller = function() {
       var scrollTop = $window.scrollTop(),
         documentHeight = $document.height(),
@@ -76,6 +79,33 @@
           } else {
             newTop = s.topSpacing;
           }
+
+          if (s.scrollStickyElement) {
+            //also scroll the sticky element if its higher from window
+            if (s.stickyElement.outerHeight() > windowHeight) {
+                var scrollDiff = scrollTop - lastScroll;
+                var newStickyOffest = stickyOffest - scrollDiff;
+
+                if (scrollDiff > 0) {
+                    //down
+                    if ((s.stickyElement.outerHeight() + stickyOffest) > windowHeight) {
+                        stickyOffest = newStickyOffest;
+                        if (stickyOffest < (windowHeight - s.stickyElement.outerHeight())) {
+                            stickyOffest = windowHeight - s.stickyElement.outerHeight();
+                        }
+                    }
+                    newTop = stickyOffest;
+                } else if (s.currentTop < 0) {
+                    //up
+                    newTop = stickyOffest = newStickyOffest;
+                } else {
+                    newTop = 0;
+                }
+            }
+        }
+
+        lastScroll = scrollTop;
+
           if (s.currentTop !== newTop) {
             var newWidth;
             if (s.getWidthFrom) {
